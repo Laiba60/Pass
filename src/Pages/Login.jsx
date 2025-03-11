@@ -2,8 +2,10 @@ import React from "react";
 import { Shield, Settings, Eye, User } from "lucide-react";
 import  { useState } from "react";
 import icon from "/images/icon.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login=()=>{
+  const navigate=useNavigate();
     const [title, setTitle]=useState("");
   const [username, setUsername]=useState("");
   const [password, setPassword]=useState("");
