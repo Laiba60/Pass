@@ -4,7 +4,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-r from-[#090979] via-[#4B0082] to-[#000] text-white w-screen">
+    <div className="relative min-h-screen bg-[#0E1A60] text-white w-screen">
       
       <header className="flex flex-wrap justify-between items-center px-4 md:px-8 py-4">
        

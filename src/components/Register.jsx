@@ -12,7 +12,7 @@ const Register = () => {
          
           <div className="flex items-center space-x-3 ">
             <img src="/images/icon.svg" alt="Logo" className="w-8 h-8" />
-            <h2 className="text-lg font-semibold text-[#A143FF]">Password Manager</h2>
+            <h2 className="text-lg font-semibold text-[#A143FF]" onClick={()=>navigate('/')}>Password Manager</h2>
           </div>
   
          

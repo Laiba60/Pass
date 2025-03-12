@@ -1,7 +1,8 @@
 import icon from "/images/icon.svg";
-
+ import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate=useNavigate();
   
   return (
     <div className="flex min-h-screen w-screen bg-[#0E1A60]">
@@ -12,7 +13,7 @@ const LoginPage = () => {
       >
         <div className="flex items-center space-x-3 mb-6">
           <img src={icon} alt="Security Icon" className="w-8 h-8 fill-[#A143FF]" />
-          <h2 className="text-lg font-semibold text-white">Password Manager</h2>
+          <h2 className="text-lg font-semibold text-white" onClick={()=>navigate('/')}>Password Manager</h2>
         </div>
         <p className="text-base text-white/80 leading-relaxed mb-130">
           Login to your account with ease. We do the heavy lifting in a
@@ -48,7 +49,7 @@ const LoginPage = () => {
           />
 
          
-          <button className="w-full mt-6 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3 rounded-lg transition-all hover:opacity-90 shadow-lg">
+          <button className="w-full mt-6 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3 rounded-lg transition-all hover:opacity-90 shadow-lg"   onClick={() => navigate('/userdata')}>
             Next
           </button>
 
