@@ -6,6 +6,7 @@ import root from "/images/root.svg";
 import root2 from "/images/root2.svg";
 import plus from "/images/plus.svg";
 import root4 from "/images/root4.svg";
+
 const Login = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -31,10 +32,10 @@ const Login = () => {
     console.log("Saved Data:", formData);
   };
   return (
-    <div className="min-h-screen bg-[#0A1A60] flex items-center justify-center p-4 w-screen">
+    <div className="h-screen bg-[#0A1A60] flex items-center justify-center p-3 w-screen overflow-hidden">
       <div className="w-full max-w-6xl bg-[#0E1A60] text-white p-6 rounded-2xl shadow-lg">
-        <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
-          <img src={icons} className="text-white" alt="Logo" />
+        <div className="flex flex-wrap justify-between items-center gap-3 mb-6">
+          <img src={icons} className="" alt="Logo" />
 
           <div className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/")}>
             Password Manager
@@ -43,7 +44,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="flex-1 min-w-[200px] p-2 rounded-lg bg-blue-900 border border-blue-950 text-white focus:outline-none"
+            className="flex-1 min-w-[150px] p-2 rounded-lg bg-blue-900 border border-blue-950 text-white focus:outline-none"
           />
           <div className="flex gap-2 flex-wrap">
             {[root, root2, plus, root4].map((icon, index) => (
