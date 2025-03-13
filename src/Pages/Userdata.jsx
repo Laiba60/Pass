@@ -1,7 +1,7 @@
 import icons from "/images/icons.svg";
-import first from "/images/first.svg";
-import second from "/images/second.svg";
-import third from "/images/third.svg";
+import root2 from "/images/root2.svg";
+import plus from "/images/plus.svg";
+import root4 from "/images/root4.svg";
 import { useNavigate } from "react-router-dom";
 const Userdata = () => {
     const navigate=useNavigate();
@@ -9,7 +9,7 @@ const Userdata = () => {
     <div className="relative min-h-screen bg-[#0E1A60] text-white w-screen">
       <header className="flex items-center justify-between bg-[#101E71] p-2 shadow-lg">
         <div className="flex items-center space-x-2">
-          <img src={icons} alt="Security Icon" className="w-8 h-8 text-[#A143FF] fill-current" />
+          <img src={icons} alt="Security Icon" className="w-8 h-8" />
           <h2 className="text-lg font-semibold" onClick={()=>navigate('/')}>Password Manager</h2>
         </div>
         <input
@@ -18,9 +18,9 @@ const Userdata = () => {
           className="w-1/3 p-2 bg-[#1C2C7C] rounded text-black placeholder-gray-400 outline-none"
         />
         <div className="space-x-3 flex">
-          <div className="bg-[#101e71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4] "><img src={first} alt="security icon"/></div>
-          <div className="bg-[#101E71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4]"><img src={second} alt="security icon"/></div>
-          <div className="bg-[#101E71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4]"><img src={third} alt="security icon"/></div>
+          <div className="bg-[#101e71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4] "><img src={root2} alt="security icon" onClick={()=>navigate('/logn')}/></div>
+          <div className="bg-[#101E71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4]"><img src={plus} alt="security icon"/></div>
+          <div className="bg-[#101E71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4]"><img src={root4} alt="security icon"/></div>
         </div>
       </header>
       <div className="flex h-full">
