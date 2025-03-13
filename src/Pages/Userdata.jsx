@@ -1,12 +1,15 @@
-import icon from "/images/icon.svg";
+import icons from "/images/icons.svg";
+import first from "/images/first.svg";
+import second from "/images/second.svg";
+import third from "/images/third.svg";
 import { useNavigate } from "react-router-dom";
 const Userdata = () => {
     const navigate=useNavigate();
   return (
     <div className="relative min-h-screen bg-[#0E1A60] text-white w-screen">
-      <header className="flex items-center justify-between bg-[#101E71] p-4 shadow-lg">
+      <header className="flex items-center justify-between bg-[#101E71] p-2 shadow-lg">
         <div className="flex items-center space-x-2">
-          <img src={icon} alt="Security Icon" className="w-8 h-8 text-[#A143FF] fill-current" />
+          <img src={icons} alt="Security Icon" className="w-8 h-8 text-[#A143FF] fill-current" />
           <h2 className="text-lg font-semibold" onClick={()=>navigate('/')}>Password Manager</h2>
         </div>
         <input
@@ -14,29 +17,32 @@ const Userdata = () => {
           placeholder="Search"
           className="w-1/3 p-2 bg-[#1C2C7C] rounded text-black placeholder-gray-400 outline-none"
         />
-        <div className="space-x-3">
-          <button className="bg-[#101E71] px-4 py-2 rounded">Login</button>
-          <button className="bg-[#FFFFFF] px-4 py-2 rounded">Sign Up</button>
-          <button className="bg-[#5003DB] px-4 py-2 rounded">register</button>
+        <div className="space-x-3 flex">
+          <div className="bg-[#101e71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4] "><img src={first} alt="security icon"/></div>
+          <div className="bg-[#101E71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4]"><img src={second} alt="security icon"/></div>
+          <div className="bg-[#101E71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4]"><img src={third} alt="security icon"/></div>
         </div>
       </header>
       <div className="flex h-full">
-        <aside className="w-1/4 bg-[#101E71] p-5 flex flex-col ">
-          <h2 className="text-sm  mb-4 font-[Neue Plak]">Folders</h2>
+        <aside className="w-1/4 bg-[#101E71] p-4 flex flex-col ">
+        <div >
+          <h2 className="font-[Neue Plak] font-normal text-[16px] leading-[64px] tracking-[0px]">Folders</h2>
+          </div>
           <div className="w-full text-left py-2 px-3 bg-[#010E59] rounded">Recycle Bin</div>
           <div className="w-full text-left py-2 px-3 bg-gradient-to-r from-[#4307AE] to-[#664C95] rounded mt-2">Database Folder 1</div>
           
-          <h2 className="text-sm font-[
-Neue Plak] mt-50">Searches and Tags</h2>
+          <h2 className="text-sm font-[Neue Plak] mt-40">Searches and Tags</h2>
+
           <ul className="text-gray-400 space-y-2 mt-2">
-            <li className="cursor-pointer hover:text-white"> Clear Searches</li>
-            <li className="cursor-pointer hover:text-white"> All Entities</li>
-            <li className="cursor-pointer hover:text-white"> Expired</li>
-            <li className="cursor-pointer hover:text-white"> Weak Passwords</li>
+            <li className="text-[12px] font-dm-sans font-normal leading-[32px] tracking-[0px] flex items-center"> Clear Searches</li>
+
+            <li className="text-[12px] font-dm-sans font-normal leading-[32px] tracking-[0px] flex items-center"> All Entities</li>
+            <li className="text-[12px] font-dm-sans font-normal leading-[32px] tracking-[0px] flex items-center"> Expired</li>
+            <li className="text-[12px] font-dm-sans font-normal leading-[32px] tracking-[0px] flex items-center"> Weak Passwords</li>
           </ul>
         </aside>
-        <main className="flex-1 p-5">
-          <section className="bg-[#101E71] p-5 rounded-lg">
+        <main className="flex-1 p-4">
+          <section className="bg-[#101E71] p-4 rounded-lg">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-gray-600 bg-[#002256]">
