@@ -1,79 +1,67 @@
 import { useNavigate } from "react-router-dom";
-
 const Header = () => {
-  const navigate = useNavigate();
-
+  const navigate=useNavigate();
   return (
-    <div className="relative min-h-screen bg-[#0E1A60] text-white w-screen">
-      
-      <header className="flex flex-wrap justify-between items-center px-4 md:px-8 py-4">
-       
-        <div className="flex items-center">
-          <img src="/images/icon.svg" alt="Logo" className="w-8 h-8" />
-          <h1 className="text-lg font-semibold ml-2">PasswordManager</h1>
+    <>
+      <div style={{ backgroundImage: "url('/images/bg.svg')" }} className="bg-cover bg-center bg-no-repeat">
+        <header className="relative z-[1000] bg-gradient-to-r from-[#0e1a60] to-[#2A3992] border-b border-white">
+          <nav className="pt-[14px] pb-[11px] px-[10px] sm:px-[35px] flex sm:justify-between sm:items-center">
+           
+            <a className="flex items-center gap-[6px] md:gap-[15px]" href="/">
+              <img src="/images/icon.svg" alt="Logo" className="cursor-pointer w-[60px] h-[44.02px] md:w-[100px]" />
+              <h2 className="text-[18px] md:text-[16px] font-[400] leading-[16px] text-white whitespace-nowrap">
+                Password Manager
+              </h2>
+            </a>
+            <div className="items-center gap-[30px] hidden md:flex">
+              <a
+                href="/auth/register"
+                className="w-[157px] h-[54.99px] mq2000:w-[250px] mq2000:h-[100px] bg-white hover:bg-[#e7e7e7] text-[#002550] border-[0.8px] border-[#FFFFFF] rounded-[14px] flex justify-center items-center text-[20px] mq2000:text-[38px] whitespace-nowrap cursor-pointer leading-[26px] font-[400]"
+              >
+                Sign Up
+              </a>
+              <div className="relative w-[157px] h-[54.99px] mq2000:w-[250px] mq2000:h-[100px] flex justify-center items-center rounded-[14px]">
+                
+                <div className="absolute inset-0 rounded-[14px] border-[1px] bg-gradient-to-r from-[#FFFFFF] to-[#ffffff30] opacity-60"></div>
+                <a
+                  href="/auth/login"
+                  className="relative w-full h-full  bg-[#101E71] flex justify-center items-center rounded-[14px] text-[20px] mq2000:text-[38px] leading-[26px] font-[400] text-white cursor-pointer"
+               onClick={()=>navigate('/login')} >
+                  Login
+                </a>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <div className="relative flex h-screen flex-col md:flex-row justify-start items-start pt-[60px] sm:pt-[80px] w-full bg-gradient-to-br from-[#0E1A60] to-[#1A237E] bg-opacity-40">
+          <div className="flex flex-col gap-[20px] pl-6 pr-4 w-[95%] sm:w-[55%] items-start sm:px-[60px]">
+            <button
+              className="rounded-[12px] border border-[#fff] backdrop-blur-[11px] flex justify-between p-[10px] items-center text-[#EFFAFF] font-[400] text-[13px] sm:text-[16px] leading-[20px] outline-none min-w-[210px] sm:min-w-[254px]"
+              style={{
+                background: "linear-gradient(rgba(255, 255, 255, 0.19) 0%, rgba(153, 153, 153, 0.19) 100%)",
+              }}
+            >
+              Cross-platform Password Manager
+            </button>
+            <h1 className="text-white text-[50px] sm:text-[60px] md:text-[66px] font-bold leading-[50px]">
+              Secure Your Systems with the Ultimate Password Manager
+            </h1>
+            <p className="text-[#FFFFFFB2] font-['DM_Sans'] text-[16px] sm:text-[18px] md:text-[20px] font-[400] leading-[20px] sm:leading-[22px] md:leading-[24px] tracking-[0px]">
+              "Let us store your passwords and auto-fill them into your favorite apps, so you can forget all about them. We do the heavy lifting in a no-nonsense, ad-free, tracker-free, and cloud-free manner. Free and open source."
+            </p>
+            <a
+              href="/get-started"
+              className="bg-white mt-4 px-[20px] py-[10px] text-black text-[16px] font-[400] rounded-[8px] border border-white  transition-all"
+            >
+              Get Started
+            </a>
+          </div>
+          <div className="absolute right-0 top-20 hidden md:block">
+            <img src="/images/lock.svg" alt="Security Illustration" className="w-[450px]" />
+          </div>
         </div>
-
-       
-        <div className="flex flex-wrap items-center gap-3 mt-3 md:mt-0">
-          <input
-            type="search"
-            placeholder="Search"
-            className="w-full sm:w-64 md:min-w-[400px] p-2 rounded-lg bg-[#0E1A60] border border-blue-950 text-white focus:outline-none"
-          />
-          <button
-            className="px-4 md:px-7 py-2 text-black bg-white rounded-lg hover:bg-gray-200 transition"
-            onClick={() => navigate("/register")}
-          >
-            Sign up
-          </button>
-          <button
-            className="px-4 md:px-7 py-2 border border-white rounded-lg hover:bg-white text-black transition"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </button>
-        </div>
-      </header>
-
-     
-      <section className="flex flex-col md:flex-row justify-between items-center px-6 md:px-20 py-12">
-       
-        <div className="max-w-lg text-center md:text-left">
-          <h3 className="text-white tracking-widest text-sm border inline-block p-2 rounded-full">
-            Cross-platform Password Manager
-          </h3>
-          <h1 className="text-3xl sm:text-4xl font-bold leading-tight mt-2">
-            Secure Your Systems with the{" "}
-            <span className="text-white">Ultimate Password Manager</span>
-          </h1>
-          <p className="mt-4 text-gray-300">
-            Let us store your passwords and auto-fill them into your favorite
-            apps, so you can forget all about them. We do the heavy lifting in a
-            no-nonsense, ad-free, tracker-free, and cloud-free manner. Free and
-            open source.
-          </p>
-          <button className="mt-6 px-6 py-3 bg-blue-600 text-black font-semibold rounded-lg hover:bg-blue-700 transition">
-            Get Started
-          </button>
-        </div>
-
-       
-        <div className="relative mt-10 md:mt-0">
-          <img
-            src="/images/lock.svg"
-            alt="Secure Lock"
-            className="w-64 sm:w-[300px] md:w-[350px] drop-shadow-lg"
-          />
-
-          
-          <img src="/images/facebook.svg" className="absolute top-10 left-[10%] sm:left-[120px] w-6 sm:w-8" alt="" />
-          <img src="/images/spotify.svg" className="absolute top-20 right-5 sm:right-10 w-6 sm:w-8" alt="" />
-          <img src="/images/tiktok.svg" className="absolute bottom-12 left-[10%] sm:left-[100px] w-6 sm:w-8" alt="" />
-          <img src="/images/slack.svg" className="absolute bottom-20 right-5 sm:right-12 w-6 sm:w-8" alt="" />
-          <img src="/images/amazon.svg" className="absolute bottom-5 left-[20%] sm:left-[160px] w-6 sm:w-8" alt="" />
-        </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 
