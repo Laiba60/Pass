@@ -25,11 +25,11 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen bg-[#0A1A60] flex items-center justify-center w-screen px-4 sm:px-2 overflow-hidden">
-      <div className="w-full max-w-6xl bg-[#0E1A60] text-white rounded-2xl shadow-lg">
+    <div className="h-screen bg-[#0A1A60]  items-center justify-center w-screen px-4 sm:px-2 overflow-hidden">
+      
         
-        {/* HEADER SECTION - Fully Responsive */}
-        <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4 bg-[#0E1A60]">
+       
+        <div className=" max-w-6xl flex flex-wrap items-center justify-between gap-3 pl-9 py-4 bg-[#0E1A60]  text-white rounded-lg border-b border-[#FFFFFF]">
           <img src={icons} alt="Logo" className="h-8 w-8" />
           
           <div 
@@ -38,12 +38,13 @@ const Login = () => {
           >
             Password Manager
           </div>
-
+ 
           <input
             type="text"
             placeholder="Search..."
-            className="flex-1 min-w-[100px] sm:w-full p-2 rounded-lg bg-blue-900 border border-blue-950 text-white focus:outline-none"
+            className="flex-1 min-w-[100px] sm:w-full text-white focus:outline-none  p-2 rounded-lg bg-blue-900 border border-blue-950"
           />
+          
 
           <div className="flex gap-2 sm:flex-wrap">
             {[root, root2, plus, root4].map((icon, index) => (
@@ -53,13 +54,13 @@ const Login = () => {
             ))}
           </div>
         </div>
-
+        <div className="w-full max-w-6xl bg-[#0E1A60] text-white rounded-2xl shadow-lg  items-center">
         {/* CONTENT SECTION - Responsive Form */}
-        <div className="p-6">
-          <h2 className="text-2xl font-bold mb-4">Root • Add Entry</h2>
+        <div className="p-6 ">
+          <h2 className="text-2xl font-bold mb-4 pl-9">Root • Add Entry</h2>
           <form onSubmit={handleSubmit}>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pl-9">
               <div>
                 <label className="block text-sm mb-1">Title</label>
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} 
@@ -105,14 +106,14 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-4 pl-9">
               <label className="block text-sm mb-1">Notes</label>
               <textarea value={notes} onChange={(e) => setNotes(e.target.value)} 
                 className="w-full p-2 rounded bg-[#101E71] border border-[#374CC4] focus:outline-none" rows="3">
               </textarea>
             </div>
 
-            <div className="flex flex-wrap justify-end gap-4 items-center mt-6">
+            <div className="flex flex-wrap justify-end gap-4 items-center mt-4">
               <button type="button" className="bg-[#101E71] text-black py-2 px-4 rounded-lg">
                 Cancel
               </button>

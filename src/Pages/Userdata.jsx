@@ -56,14 +56,14 @@ const Userdata = () => {
           </div>
 
           <div className="w-full py-2 px-3 bg-[#010E59] rounded flex items-center ">
-            <img src={pic} className="w-6 h-6" />
+            <img src={pic} className="w-4 h-4" />
             <h2 className="font-[Neue Plak] text-[16px] leading-[30px] pl-3">Recycle Bin</h2>
           </div>
 
           <div className="w-full py-2 px-3 bg-gradient-to-r from-[#4307AE] to-[#664C95] rounded flex items-center mt-3">
-            <img src={data} className="w-6 h-6" />
+            <img src={data} className="w-4 h-4" />
             <h2 className="font-[Neue Plak] text-[16px] leading-[30px] pl-3">Database Folder 1</h2>
-            <img src={pic} className="ml-auto w-6 h-6" />
+            <img src={pic} className="ml-auto w-4 h-4" />
           </div>
 
           <h2 className="text-sm font-[Neue Plak] mt-10 md:mt-40">Searches and Tags</h2>
