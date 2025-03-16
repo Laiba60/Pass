@@ -5,79 +5,100 @@ import root4 from "/images/root4.svg";
 import folder from "/images/folder.svg";
 import pic from "/images/pic.svg";
 import data from "/images/data.svg";
-import search from '/images/search.svg';
+import search from "/images/search.svg";
 import { useNavigate } from "react-router-dom";
+
 const Userdata = () => {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="relative min-h-screen bg-[#0E1A60] text-white w-screen">
-      <header className="flex items-center justify-between bg-[#101E71] p-2 shadow-lg">
-        <div className="flex items-center space-x-3 ml-20">
-          <img src={icons} alt="Security Icon" className="w-12 h-12" />
-          <h2 className="text-2xl font-bold cursor-pointer" onClick={()=>navigate('/')}>Password Manager</h2>
+      {/* Header */}
+      <header className="flex flex-col md:flex-row items-center justify-between bg-[#101E71] p-4 md:p-2 shadow-lg">
+        <div className="flex items-center space-x-3 md:ml-10">
+          <img src={icons} alt="Security Icon" className="w-10 h-10 md:w-12 md:h-12" />
+          <h2 className="text-xl md:text-2xl font-bold cursor-pointer" onClick={() => navigate("/")}>
+            Password Manager
+          </h2>
         </div>
-        <div className=" w-1/3 flex bg-[#101E71] border border-blue-500 rounded-lg">
-          <img src={search}/>
-        <input
-          type="text"
-          placeholder="Search"
-          className=" p-2  rounded text-black placeholder-gray-400"/>
-        
-        </div>
-        <div className="space-x-3 flex mr-10 items-center">
-          <div className="bg-[#101e71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4] "><img src={root2} alt="security icon" onClick={()=>navigate('/login')}/></div>
-          <div className="bg-[#101E71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4]"><img src={plus} alt="security icon"/></div>
-          <div className="bg-[#101E71] px-4 py-3 rounded-full w-[61px] h-[61px] border-[0.3px] border-[#374CC4]"><img src={root4} alt="security icon"/></div>
+        {/* Search Bar */}
+       
+       
+        <div className="relative w-full md:w-1/3 mt-3 md:mt-0">
+  <img src={search} className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+  <input
+    type="text"
+    placeholder="Search"
+    className="w-full p-2 pl-10 text-black placeholder-gray-400 font-dm-sans text-base leading-8 tracking-normal border border-blue-500 rounded-lg bg-[#101E71] focus:outline-none"
+  />
+</div>
+
+        {/* Icons */}
+        <div className="space-x-2 md:space-x-3 flex mt-3 md:mt-0 mr-5 md:mr-10">
+          <div className="bg-[#101E71] p-3 rounded-full w-12 h-12 md:w-[61px] md:h-[61px] border border-[#374CC4]">
+            <img src={root2} alt="security icon" onClick={() => navigate("/login")} />
+          </div>
+          <div className="bg-[#101E71] p-3 rounded-full w-12 h-12 md:w-[61px] md:h-[61px] border border-[#374CC4]">
+            <img src={plus} alt="security icon" />
+          </div>
+          <div className="bg-[#101E71] p-3 rounded-full w-12 h-12 md:w-[61px] md:h-[61px] border border-[#374CC4]">
+            <img src={root4} alt="security icon" />
+          </div>
         </div>
       </header>
-      <div className="flex h-full">
-        <aside className="w-1/4 bg-[#101E71] p-4 flex flex-col ">
-        <div className="flex border-1 border-blue-900">
-          <h2 className="font-[Neue Plak] font-normal text-[16px] leading-[50px] tracking-[0px] pl-3">Folders</h2>
-          <img src={folder} className="pl-45"/>
+
+      {/* Main Content */}
+      <div className="flex flex-col md:flex-row h-full">
+        {/* Sidebar */}
+        <aside className="w-full md:w-1/4 bg-[#101E71] p-4 flex flex-col">
+          <div className="flex items-center border border-blue-900 p-2">
+            <h2 className="font-[Neue Plak] text-[16px] leading-[30px] pl-3">Folders</h2>
+            <img src={folder} className="ml-auto w-6 h-6" />
           </div>
-          <div className="w-full  py-2 px-3 bg-[#010E59] rounded flex">
-            <img src={pic} />
-          <h2 className="font-[Neue Plak] font-normal text-[16px] leading-[50px] tracking-[0px] pl-3">RecycleBin</h2>
- 
+
+          <div className="w-full py-2 px-3 bg-[#010E59] rounded flex items-center ">
+            <img src={pic} className="w-6 h-6" />
+            <h2 className="font-[Neue Plak] text-[16px] leading-[30px] pl-3">Recycle Bin</h2>
           </div>
-          <div className="w-full  py-2 px-3 bg-gradient-to-r from-[#4307AE] to-[#664C95] rounded flex ">
-            
-            <img src={data}/>
-            <h2 className="font-[Neue Plak] font-normal text-[16px] leading-[50px] tracking-[0px] pl-3">Database Folder 1</h2>
-            <img src={pic} className="pl-20"/>
-           
+
+          <div className="w-full py-2 px-3 bg-gradient-to-r from-[#4307AE] to-[#664C95] rounded flex items-center mt-3">
+            <img src={data} className="w-6 h-6" />
+            <h2 className="font-[Neue Plak] text-[16px] leading-[30px] pl-3">Database Folder 1</h2>
+            <img src={pic} className="ml-auto w-6 h-6" />
           </div>
-          
-          <h2 className="text-sm font-[Neue Plak] mt-40">Searches and Tags</h2>
+
+          <h2 className="text-sm font-[Neue Plak] mt-10 md:mt-40">Searches and Tags</h2>
 
           <ul className="text-gray-400 space-y-2 mt-2">
-            <li className="text-[12px] font-dm-sans font-normal leading-[32px] tracking-[0px] flex items-center"> Clear Searches</li>
-
-            <li className="text-[12px] font-dm-sans font-normal leading-[32px] tracking-[0px] flex items-center"> All Entities</li>
-            <li className="text-[12px] font-dm-sans font-normal leading-[32px] tracking-[0px] flex items-center"> Expired</li>
-            <li className="text-[12px] font-dm-sans font-normal leading-[32px] tracking-[0px] flex items-center"> Weak Passwords</li>
+            {["Clear Searches", "All Entities", "Expired", "Weak Passwords"].map((item) => (
+              <li key={item} className="text-[12px] font-dm-sans leading-[32px] flex items-center">
+                {item}
+              </li>
+            ))}
           </ul>
         </aside>
-        <main className="flex-1 pl-2">
-          <section className="bg-[#101E71] p-4 rounded-lg">
+
+        {/* Main Section */}
+        <main className="flex-1 p-2">
+          <section className="bg-[#101E71]  rounded-lg">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-gray-600 bg-[#002256]">
-                  <th className="p-2">Title</th>
-                  <th className="p-2">Username</th>
-                  <th className="p-2">URL</th>
-                  <th className="p-2">Notes</th>
-                  <th className="p-2">Modified</th>
+                  {["Title", "Username", "URL", "Notes", "Modified"].map((heading) => (
+                    <th key={heading} className="p-2 text-xs md:text-sm">{heading}</th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td colSpan="5" className="text-center py-10">
-                    <img src="/images/table.svg" alt="Secure Icon" className="mx-auto mt-10 w-40" />
-                    <h3 className="font-[NeuePlak] font-normal text-[16px] leading-[64px] tracking-[0px] text-center">Secure Your First Password with Us</h3>
-                    <p className="text-gray-300 font-[DM-sans] text-[16px] text-center mx-auto max-w-[700px]">
-                    Take the first step towards safeguarding your digital world. Add your first password now and experience top-notch security, ease of access, and peace of mind. Start building your vault and protect what matters most.
+                  <td colSpan="5" className="text-center py-5 md:py-10">
+                    <img src="/images/table.svg" alt="Secure Icon" className="mx-auto w-24 md:w-40 mt-5 md:mt-10" />
+                    <h3 className="font-[NeuePlak] text-[14px] md:text-[16px] leading-[40px] md:leading-[64px]">
+                      Secure Your First Password with Us
+                    </h3>
+                    <p className="text-gray-300 text-[14px] md:text-[16px] text-center mx-auto max-w-[90%] md:max-w-[700px]">
+                      Take the first step towards safeguarding your digital world. Add your first password now and
+                      experience top-notch security, ease of access, and peace of mind. Start building your vault and
+                      protect what matters most.
                     </p>
                   </td>
                 </tr>
