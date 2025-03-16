@@ -17,7 +17,7 @@ const LoginPage = () => {
             Password Manager
           </h2>
         </div>
-        <p className="w-[453px] text-white font-['DM_Sans'] font-normal text-[18px] leading-[26px] mb-90">
+        <p className="w-[453px] text-white font-['DM_Sans'] font-normal text-[18px] leading-[26px] mb-100">
           Login to your account with ease. We do the heavy lifting in a
           no-nonsense, ad-free, tracker-free, and cloud-free manner. Free and
           open source.
@@ -27,30 +27,30 @@ const LoginPage = () => {
         className="w-1/2 flex flex-col justify-center items-center px-10 text-white bg-cover bg-center relative rounded-l-[100px]"
         style={{ backgroundImage: "url('/images/light.svg')" }}
       >
-        <div className="absolute top-10 right-10 w-16 h-16 bg-blue-500 blur-2xl opacity-50 rounded-full"></div>
-        <div className="absolute bg-[#101E71] p-10 rounded-lg shadow-lg w-[75%] mr-[-90px]">
-          <div className="flex flex-col items-center mb-2">
-            <h2 className="text-3xl font-bold mt-3">Log In</h2>
+        
+       
+          <div className="flex flex-col items-center mb-2  rounded-lg shadow-lg ">
+            <h2 className="text-4xl font-bold mt-10">Log In</h2>
           </div>
-          <label className="block text-sm mb-2 font-medium">Key Seed</label>
+          <label className="block text-sm mb-2 font-medium mr-[450px] ">Key Seed</label>
           <input
             type="text"
             placeholder="Enter your key seed..."
-            className="w-full p-3 rounded-lg bg-[#28399F] text-white placeholder-white/60 border-none focus:ring-2 focus:ring-[#A143FF] outline-none"
+            className="w-full p-5 rounded-lg bg-[#0E1A60] text-white placeholder-white/60 border-none focus:ring-2 focus:ring-[#A143FF] outline-none"
           />
           <button
-            className="w-full mt-6 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3 rounded-lg transition-all hover:opacity-90 shadow-lg"
+            className="w-1/2 mt-10  bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3 rounded-[18.37px] transition-all hover:opacity-90 shadow-lg"
             onClick={() => navigate('/userdata')}
           >
             Next
           </button>
           <p className="text-center mt-4 text-sm text-white/80">
             Don’t have an account?{" "}
-            <button className="text-[#A143FF] font-semibold">Register</button>
+            <a className="text-[#A143FF] font-semibold" onClick={()=>navigate('/register')}>Register</a>
           </p>
         </div>
       </div>
-    </div>
+    
   );
 };
 

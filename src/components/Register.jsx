@@ -19,28 +19,28 @@ const Register = () => {
           </p>  
         </div>
         <div 
-          className="w-1/2 flex flex-col justify-center items-center px-10 relative bg-cover bg-center rounded-l-[100px]"
+          className="w-1/2 flex flex-col justify-center items-center px-10 pt-10 relative bg-cover bg-center rounded-l-[100px]"
           style={{ backgroundImage: "url('/images/regis.svg')" }}
         >
-          <div className="absolute top-10 right-10 w-16 h-16 bg-blue-500 blur-2xl opacity-50 rounded-full"></div> 
-          <div className="relative bg-[#101E71] p-10 rounded-lg shadow-lg w-[80%] text-center">
-            <h2 className="text-3xl font-bold mt-4">Register Account</h2>
-            <h3 className="text-lg font-semibold text-[#A143FF] mt-4">Important Note:</h3>
-            <p className="text-sm text-white/80 mt-2">
+           
+         
+            <h2 className="text-3xl font-bold mt-6 text-center ">Register Account</h2>
+            <h3 className="text-lg font-semibold text-white mt-4 text-center ">Important note:</h3>
+            <p className="text-sm text-white/80 mt-2 text-center">
               On the next page, you will see a series of 16 words. This is your unique and private seed, and it 
               is the <span >ONLY</span> way to recover your wallet in 
               case of loss. Store it safely outside of the app.
             </p>
-            <button className="mt-6 w-full bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3 rounded-lg transition-all hover:opacity-90">
+            <button className="mt-9 w-1/2 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3  px-6 rounded-lg transition-all hover:opacity-90" onClick={()=>navigate('/logn')}>
               I understand, show me my seed
             </button>
             <p className="text-sm text-white/80 mt-4">
               Already have an account?{" "}
-              <a href="/login" className="text-[#A143FF] font-semibold hover:underline" onClick={()=>('/login')}>Login here</a>
+              <a href="/logn" className="text-[#A143FF] font-semibold hover:underline">Login here</a>
             </p>
           </div>
         </div>
-      </div>
+      
     );
   };
   
