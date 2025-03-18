@@ -5,6 +5,7 @@ import Login from "./Pages/Login";
 import LoginPage from "./Pages/LoginPage";
 
 import Register from "./components/Register";
+import Generate from "./components/Generate";
 import Userdata from "./Pages/Userdata";
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/userdata" element={<Userdata/>}/>
+        <Route path="/generate" element={<Generate/>}/>
         </Routes>
         </Router>
     

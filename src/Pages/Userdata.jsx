@@ -35,10 +35,10 @@ const Userdata = () => {
         {/* Icons */}
         <div className="space-x-2 md:space-x-3 flex mt-3 md:mt-0 mr-5 md:mr-10">
           <div className="bg-[#101E71] p-3 rounded-full w-12 h-12 md:w-[61px] md:h-[61px] border border-[#374CC4]">
-            <img src={root2} alt="security icon" onClick={() => navigate("/login")} />
+            <img src={root2} alt="security icon" onClick={() => navigate("/generate")} />
           </div>
           <div className="bg-[#101E71] p-3 rounded-full w-12 h-12 md:w-[61px] md:h-[61px] border border-[#374CC4]">
-            <img src={plus} alt="security icon" />
+            <img src={plus} alt="security icon" onClick={()=>navigate('/login')}/>
           </div>
           <div className="bg-[#101E71] p-3 rounded-full w-12 h-12 md:w-[61px] md:h-[61px] border border-[#374CC4]">
             <img src={root4} alt="security icon" />
