@@ -19,7 +19,7 @@ const Heromid = () => {
              background: "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(153, 153, 153, 0.15) 100%)"
   }}
 >
-  Try our Additional Solution
+  Try our additional services
 </button>
           <h1 className="font-plak font-normal text-[66px] leading-[61px] tracking-[0px]">
 

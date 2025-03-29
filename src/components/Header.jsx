@@ -3,33 +3,31 @@ const Header = () => {
   const navigate=useNavigate();
   return (
     <>
-      <div style={{ backgroundImage: "url('/images/bg.svg')" }} className="bg-cover bg-center bg-no-repeat">
-        <header className="relative z-[1000] bg-gradient-to-r from-[#0e1a60] to-[#2A3992] border-b border-white">
-          <nav className="pt-[14px] pb-[11px] px-[5px] sm:px-[30px] flex sm:justify-between sm:items-center">
-           
-            <a className="flex items-center gap-[6px] md:gap-[15px]" href="/">
-              <img src="/images/icon.svg" alt="Logo" className="cursor-pointer w-[60px] h-[44.02px] md:w-[100px]" />
-              <h2 className="text-[18px] md:text-[16px] font-[400] leading-[16px] text-white whitespace-nowrap">
+      <div className="bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/bg.svg')" }}>
+
+      <header className="relative z-[1000] bg-gradient-to-r from-[#0e1a60] to-[#2A3992] border-b border-white">
+          <nav className="pt-[10px] pb-[8px] px-[10px] sm:px-[20px] flex justify-between items-center">
+            
+            {/* LOGO */}
+            <a className="flex items-center gap-[8px]" href="/">
+              <img src="/images/icon.svg" alt="Logo" className="cursor-pointer w-[55px] h-[40px] md:w-[80px]" />
+              <h2 className="text-[16px] md:text-[18px] font-[400] text-white whitespace-nowrap">
                 Password Manager
               </h2>
             </a>
-            <div className="items-center gap-[30px] hidden md:flex">
+
+            {/* NAV BUTTONS */}
+            <div className="items-center gap-[20px] hidden md:flex">
               <a href="/register"
-                
-                className="w-[157px] h-[54.99px] mq2000:w-[250px] mq2000:h-[100px] bg-white hover:bg-[#e7e7e7] text-black border-[0.8px] border-[#FFFFFF] rounded-[14px] flex justify-center items-center text-[20px] mq2000:text-[38px] whitespace-nowrap cursor-pointer leading-[26px] font-[400]"
+                className="w-[140px] h-[45px] bg-white hover:bg-[#e7e7e7] text-black border border-white rounded-[10px] flex justify-center items-center text-[18px] font-[400] transition-all"
               >
                 Sign Up
               </a>
-              <div className="relative w-[157px] h-[54.99px] mq2000:w-[250px] mq2000:h-[100px] flex justify-center items-center rounded-[14px]">
-                
-                <div className="absolute inset-0 rounded-[14px] border-[1px] bg-gradient-to-r from-[#FFFFFF] to-[#ffffff30] opacity-60"></div>
-                <a href="/logn"
-                  
-                  className="relative w-full h-full  bg-[#101E71] flex justify-center items-center rounded-[14px] text-[20px] mq2000:text-[38px] leading-[26px] font-[400] text-white cursor-pointer"
-                >
-                  Login
-                </a>
-              </div>
+              <a href="/login"
+                className="w-[140px] h-[45px] bg-[#101E71] text-white border border-white rounded-[10px] flex justify-center items-center text-[18px] font-[400] transition-all hover:bg-[#0E1A60]"
+              >
+                Login
+              </a>
             </div>
           </nav>
         </header>
@@ -64,9 +62,10 @@ const Header = () => {
           <div className="absolute right-0 top-20 hidden md:block">
             <img src="/images/lock.svg" alt="Security Illustration" className="w-[450px]" />
           </div>
-        </div>
-      </div>
-    </>
+          </div>
+          </div>
+      </>
+    
   );
 };
 
