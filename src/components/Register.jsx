@@ -31,7 +31,7 @@ const Register = () => {
               is the <span >ONLY</span> way to recover your wallet in 
               case of loss. Store it safely outside of the app.
             </p>
-            <button className="mt-9 w-1/2 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3  px-6 rounded-lg transition-all hover:opacity-90" onClick={()=>navigate('/logn')}>
+            <button className="mt-9 w-1/2 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3  px-6 rounded-lg transition-all hover:opacity-90" onClick={()=>navigate('/Seed')}>
               I understand, show me my seed
             </button>
             <p className="text-sm text-white/80 mt-4">

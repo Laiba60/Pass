@@ -1,6 +1,5 @@
 import form from "/images/form.svg"; 
 import whole from "/images/whole.svg";
-
 const Heromid = () => {
   return(
     <div

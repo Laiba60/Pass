@@ -49,7 +49,7 @@ const LoginPage = () => {
 
         <button
           className="w-full max-w-xs sm:max-w-md mt-6 sm:mt-10 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3 rounded-[18.37px] transition-all hover:opacity-90 shadow-lg"
-          onClick={() => navigate('/userdata')}
+          
         >
           Next
         </button>
