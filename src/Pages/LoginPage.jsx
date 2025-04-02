@@ -1,8 +1,27 @@
 import icons from "/images/icons.svg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useGenerateToken } from "../api"
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [keySeed, setKeySeed] = useState("");
+  const { mutate: generateToken, isLoading, isError, error } = useGenerateToken();
+  const handleLogin = () => {
+    if (!keySeed.trim()) {
+      alert("Please enter your key seed.");
+      return;
+    }
+
+    generateToken(keySeed, {
+      onSuccess: () => {
+        navigate("/dashboard"); 
+      },
+      onError: (err) => {
+        alert(`Login failed: ${err.message}`);
+      },
+    });
+  };
   return (
     <div className="flex flex-col md:flex-row min-h-screen w-screen bg-[#0E1A60]"> 
       {/* Left Side (Info Section) */}
@@ -44,14 +63,17 @@ const LoginPage = () => {
         <input
           type="text"
           placeholder="Enter your key seed..."
+          value={keySeed}
+          onChange={(e) => setKeySeed(e.target.value)}
           className="w-full max-w-xs sm:max-w-md p-4 sm:p-5 rounded-lg bg-[#0E1A60] text-white placeholder-white/60 border-none focus:ring-2"
         />
 
         <button
           className="w-full max-w-xs sm:max-w-md mt-6 sm:mt-10 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3 rounded-[18.37px] transition-all hover:opacity-90 shadow-lg"
           
-        >
-          Next
+          onClick={handleLogin}
+          disabled={isLoading} >
+          {isLoading ? "Logging in..." : "Next"}
         </button>
 
         <p className="text-center mt-4 text-sm text-white/80">

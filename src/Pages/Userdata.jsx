@@ -7,9 +7,16 @@ import pic from "/images/pic.svg";
 import data from "/images/data.svg";
 import search from "/images/search.svg";
 import { useNavigate } from "react-router-dom";
+import { useFetchFolder } from "../hooks/useFetchFolder";
+import { useAddFolder } from "../hooks/useAddFolder";
+import React, { useState } from "react";
 
 const Userdata = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const { data: folders = [], isLoading } = useFetchFolder();
+  const addFolderMutation = useAddFolder();
+  const [newFolderName, setNewFolderName] = useState("");
   return (
     <div className="relative min-h-screen bg-[#0E1A60] text-white w-screen">
       {/* Header */}
@@ -51,8 +58,17 @@ const Userdata = () => {
         {/* Sidebar */}
         <aside className="w-full md:w-1/4 bg-[#101E71] p-4 flex flex-col">
           <div className="flex items-center border border-blue-900 p-2">
-            <h2 className="font-[Neue Plak] text-[16px] leading-[30px] pl-3">Folders</h2>
-            <img src={folder} className="ml-auto w-6 h-6" />
+            <input type="text"  value={newFolderName}
+  onChange={(e) => setNewFolderName(e.target.value)} placeholder="Folder" className="font-[Neue Plak] text-[16px] leading-[30px] pl-3"></input>
+            <img src={folder} className="ml-auto w-6 h-6" onClick={() => {
+    if (newFolderName.trim() !== "") { 
+      addFolderMutation.mutate(newFolderName, {
+        onSuccess: () => {
+          setNewFolderName("");  
+        }
+      });
+    }
+  }}  />
           </div>
 
           <div className="w-full py-2 px-3 bg-[#010E59] rounded flex items-center ">
