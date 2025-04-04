@@ -6,8 +6,11 @@ import LoginPage from "./Pages/LoginPage";
 
 import Register from "./components/Register";
 import Generate from "./components/Generate";
+import Add from "./components/Add";
+import Remove from "./components/Remove";
 import Userdata from "./Pages/Userdata";
 import Seed from "./Pages/Seed";
+
 function App() {
   return (
     <Router>
@@ -19,6 +22,8 @@ function App() {
         <Route path="/userdata" element={<Userdata/>}/>
         <Route path="/generate" element={<Generate/>}/>
         <Route path="/seed" element={<Seed/>}/>
+        <Route path="/add" element={<Add/>}/>
+        <Route path="/remove" element={<Remove/>}/>
         </Routes>
         </Router>
     

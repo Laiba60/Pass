@@ -82,13 +82,13 @@ const Generate = () => {
   </span>
   <section className="w-full flex flex-wrap justify-between items-center gap-[4px] sm:gap-[11px]">
   <div className="relative password-input flex-1">
-  <input
-                type={showPassword ? "text" : "password"}  
-                value={password}  
+       <input
+    type={showPassword ? "text" : "password"}  
+     value={password}  
                 onChange={(e) => setPassword(e.target.value)} //
                 className="relative w-full dm-sans rounded-[10px] outline-none bg-[#0E1a60] py-[10px] sm:py-[12px] px-[7px] sm:px-[17px] placeholder:text-[#DFDFDF36] text-white text-[9px] sm:text-[16px] font-[400]"
               />
-<span 
+              <span 
                 className="cursor-pointer absolute top-[50%] right-[13px] translate-y-[-50%]" 
                 onClick={() => setShowPassword(!showPassword)} 
               >
