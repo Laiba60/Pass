@@ -15,6 +15,7 @@ export const useDeleteFolder = () => {
     mutationFn: deleteFolder,
     onSuccess: () => {
       queryClient.invalidateQueries(["folders"]);
+      
     },
   });
 };

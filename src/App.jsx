@@ -8,6 +8,7 @@ import Register from "./components/Register";
 import Generate from "./components/Generate";
 import Add from "./components/Add";
 import Remove from "./components/Remove";
+import Update from "./components/Update";
 import Userdata from "./Pages/Userdata";
 import Seed from "./Pages/Seed";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/seed" element={<Seed/>}/>
         <Route path="/add" element={<Add/>}/>
         <Route path="/remove" element={<Remove/>}/>
+        <Route path="/update" element={<Update/>}/>
         </Routes>
         </Router>
     

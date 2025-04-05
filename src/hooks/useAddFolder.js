@@ -16,6 +16,7 @@ export const useAddFolder = () => {
     mutationFn: addFolder,
     onSuccess: () => {
       queryClient.invalidateQueries(["folders"]);
+      
     },
   });
 };

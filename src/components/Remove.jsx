@@ -1,6 +1,11 @@
 import React from 'react'
 import icons from "/images/icons.svg";
-const Remove = () => {
+import { useNavigate } from 'react-router-dom';
+import table from  "/images/table.svg";
+import { useDeleteFolder } from "../hooks/useDeleteFolder";
+const Remove = ({setIsRemove, folders}) => {
+  const navigate=useNavigate();
+  const deleteFolderMutation = useDeleteFolder();
   return (
     <div className="relative min-h-[100vh] bg-[#0E1A60] text-white w-screen flex flex-col">
        <header className="bg-transparent z-1000 relative ml-30">
@@ -60,22 +65,14 @@ const Remove = () => {
                                <section className="h-[575px] flex flex-col gap-[16px]">
                                  <h4 className="px-[21px] pb-2 flex justify-between text-white text-[16px] mt-[25px] font-[400]">
                                    Folders
-                                   <span className="cursor-pointer" onClick={()=>navigate('/add')}>
+                                   <span className="cursor-pointer" >
                      
                                      <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1">
                                        <path d="M8.14286 10.9167H13.8571M11 13.8293V8.08333M1 2.41667V15.1667C1 15.9181 1.30102 16.6388 1.83684 17.1701C2.37266 17.7015 3.09938 18 3.85714 18H18.1429C18.9006 18 19.6273 17.7015 20.1632 17.1701C20.699 16.6388 21 15.9181 21 15.1667V6.66242C20.9996 5.91121 20.6984 5.19091 20.1627 4.65986C19.6269 4.12882 18.9004 3.8305 18.1429 3.8305L11 3.83333L8.14286 1H2.42857C2.04969 1 1.68633 1.14926 1.41842 1.41493C1.15051 1.68061 1 2.04094 1 2.41667Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
                                      </svg>
                                    </span>
                                  </h4>
-                                 <div className="flex items-center gap-2">
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.1786 4.58932C15.1786 4.09839 15.1454 3.61457 15.0813 3.14261H12.1452L11.0424 0.882429C10.7886 0.360666 10.2574 0.0310059 9.67871 0.0310059H1.51786C0.680664 0.0310059 0 0.71167 0 1.54886V13.7676C0 13.9265 0.0237165 14.0807 0.0711496 14.2253C1.43248 14.8586 2.95271 15.2143 4.55357 15.2143C10.421 15.2143 15.1786 10.4568 15.1786 4.58932Z" fill="#FFD058"/>
-  </svg>
-  <h2 className="text-[24px] font-medium">FolderName</h2>
-  <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3.625 1.17H3.5C3.56875 1.17 3.625 1.1115 3.625 1.04V1.17ZM3.625 1.17H8.375V1.04C8.375 1.1115 8.43125 1.17 8.5 1.17H8.375V2.34H9.5V1.04C9.5 0.466375 9.05156 0 8.5 0H3.5C2.94844 0 2.5 0.466375 2.5 1.04V2.34H3.625V1.17ZM11.5 2.34H0.5C0.223437 2.34 0 2.57237 0 2.86V3.38C0 3.4515 0.05625 3.51 0.125 3.51H1.06875L1.45469 12.0087C1.47969 12.5629 1.92031 13 2.45312 13H9.54688C10.0813 13 10.5203 12.5645 10.5453 12.0087L10.9312 3.51H11.875C11.9438 3.51 12 3.4515 12 3.38V2.86C12 2.57237 11.7766 2.34 11.5 2.34ZM9.42656 11.83H2.57344L2.19531 3.51H9.80469L9.42656 11.83Z" fill="#E14210"/>
-  </svg>
-</div>
+
                                  <ul className="flex flex-col gap-[16px] ">
                                    
                                  </ul>
@@ -114,7 +111,7 @@ const Remove = () => {
                                                <img src={table} className="mb-1 cursor-pointer" alt="Secure Logo"/>
                                                <h1 className="text-[5px]  text-white">Secure Your First Password with Us</h1>
                                                <p className="text-[10px] font-sans leading-[13.02px] text-[#FFFFFFA1]">
-                                                 Take the first step towards safeguarding your digital world. Add your first password now and<br />
+                                                 Take the first step towards safeguarding your digital world. Add your first password now and 
                                                  experience top-notch security, ease of access, and peace of mind. Start building your vault and
                                                </p>
                                              </div>
@@ -131,26 +128,40 @@ const Remove = () => {
                          <section className="fixed inset-0 flex justify-center items-center bg-[#0000006B] z-50 px-[20px]">
                           <section className="bg-[#101E71] relative w-full max-w-[853px] h-[338px] rounded-[5px] flex flex-col justify-center items-center ">
                           <span className="absolute right-[17px] top-[17px] cursor-pointer">
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg  onClick={()=>(setIsRemove())} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11 11L1 1M11 1L1 11" stroke="white" stroke-linecap="round" stroke-linejoin="round">
                             </path>
                             </svg>
                             </span>
                             <section className="flex flex-col justify-center text-center mb-7 sm:mb-12px ">
-                            <h1 className="text-white leading-[20px] sm:leading-[44.7px] text-[20px] sm:text-[32px] mb-4">Are you sure you want to delete <br> this folder</br>.?</h1>
-                            <p className="font-sans text-white px-5 max-w-[600px] leading-[20.83px] text-[11px] sm:text-[16px]">If you will delete this folder then existing passwords and the accounts will delete automatically. Are you sure you want to delete?</p>
+                            <h1 className="text-white leading-[20px] sm:leading-[44.7px] text-[15px] sm:text-[16px] mb-4">Are you sure you want to delete  this folder.?</h1>
+                            <p className="font-sans text-white px-5 max-w-[600px] leading-[20.83px] text-[11px] sm:text-[16px] ml-19">If you will delete this folder then existing passwords and the accounts will delete automatically. Are you sure you want to delete?</p>
 
                             </section>
                             <section className="mt-[0px] sm:mt-[20px] w-full flex items-center justify-center gap-[9px] sm:gap-[36px] flex-wrap">
                               <button className="dm-sans  bg-[#0E1956] w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none 
             border-none flex items-center justify-center text-[12px] sm:text-[15.5px] 
-             font-[400] text-white">Cancel</button>
-             <button className="dm-sans w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none border-none flex items-center justify-center text-[12px] sm:text-[16px] text-white" style={{
-  background: "linear-gradient(90deg, rgb(161, 67, 255) 0%, rgb(80, 3, 219) 100%)",
-  cursor: "pointer"
-}}
+             font-[400] text-black" onClick={()=>(setIsRemove(false))}>Cancel</button>
 
-             >Delete</button>
+{folders?.map((folder) => (
+  <div key={folder?.id} className="flex items-center justify-between mb-2">
+    
+    <button
+      className="dm-sans w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none border-none flex items-center justify-center text-[12px] sm:text-[16px] text-white"
+      style={{
+        background: "linear-gradient(90deg, rgb(161, 67, 255) 0%, rgb(80, 3, 219) 100%)",
+        cursor: "pointer"
+      }}
+      onClick={() =>{
+         deleteFolderMutation.mutate(folder.id)
+      setIsRemove(false)
+      }}
+     
+    >
+      Delete
+    </button>
+  </div>
+))}
              </section>
 
                           </section>

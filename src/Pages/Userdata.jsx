@@ -3,22 +3,18 @@ import search from "/images/search.svg";
 import table from "/images/table.svg";
 import { useNavigate } from "react-router-dom";
 import { useFetchFolder } from "../hooks/useFetchFolder";
-import { useAddFolder } from "../hooks/useAddFolder";
-
-import { useDeleteFolder } from "../hooks/useDeleteFolder";
 import React, { useState } from "react";
-
+import Add from "../components/Add";
+import Remove from "../components/Remove";
+import Update from "../components/Update";
 const Userdata = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const [editFolderId, setEditFolderId] = useState(null);
-  const [editFolderName, setEditFolderName] = useState("");
-  const [newFolderName, setNewFolderName] = useState("");
-
+  const [isShowAdd, setIsShowAdd]= useState(false);
+  const [isShowRemove, setIsRemove]= useState(false);
+  const [isUpdate, setIsUpdate]= useState(false);
+  const [store, isstore]=useState("folder.title");
   const { data: folders = [], isLoading } = useFetchFolder();
-  const addFolderMutation = useAddFolder();
-  const deleteFolderMutation = useDeleteFolder();
-
   return (
     <div className="relative min-h-[100vh] bg-[#0E1A60] text-white w-screen flex flex-col ">
       {/* Header */}
@@ -34,7 +30,8 @@ const Userdata = () => {
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-[50%] left-[13px] translate-y-[-50%] mq2000:w-[28px] mq2000:h-[28px]">
                 <path d="M12.5 11H11.71L11.43 10.73C12.4439 9.55402 13.0011 8.0527 13 6.5C13 5.21442 12.6188 3.95772 11.9046 2.8888C11.1903 1.81988 10.1752 0.986756 8.98744 0.494786C7.79973 0.00281635 6.49279 -0.125905 5.23192 0.124899C3.97104 0.375703 2.81285 0.994767 1.90381 1.90381C0.994767 2.81285 0.375703 3.97104 0.124899 5.23192C-0.125905 6.49279 0.00281635 7.79973 0.494786 8.98744C0.986756 10.1752 1.81988 11.1903 2.8888 11.9046C3.95772 12.6188 5.21442 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="white"></path>
                 </svg>
-                <input className="dm-sans w-full border-[1px] rounded-[12px] border-[#374CC4] outline-none bg-[#101E71] py-[11px] mq2000:py-[21px] pl-[41px] mq2000:pl-[51px] px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] mq2000:text-[20px] leading-[32px] font-[400]" placeholder="Search..." value=""/>
+                <input className="dm-sans w-full border-[1px] rounded-[12px] border-[#374CC4] outline-none bg-[#101E71] py-[11px] mq2000:py-[21px] pl-[41px] mq2000:pl-[51px] px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] mq2000:text-[20px] leading-[32px] font-[400]"
+                 placeholder="Search..." value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)}/>
                 </div>
                 <div className="flex justify-end gap-[5px] md:gap-[19px] z-[2]">
                   
@@ -74,20 +71,51 @@ const Userdata = () => {
                           </section>
       </header>
       <main>
-        <section className="w-full h-full relative flex mt-[10px] container gap-[7px] ml-30">
+        <section className="w-full h-full relative flex mt-[10px] container gap-[7px] ">
           <section className="hidden md:flex max-h-[624px] max-w-[296px] w-full bg-[#101E71] rounded-12px flex-col ">
             <section className="h-[575px] flex flex-col gap-[16px]">
               <h4 className="px-[21px] pb-2 flex justify-between text-white text-[16px] mt-[25px] font-[400]">
                 Folders
-                <span className="cursor-pointer" onClick={()=>navigate('/add')}>
-  
+
+                <span className="cursor-pointer" onClick={()=>setIsShowAdd(true)}>
                   <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1">
                     <path d="M8.14286 10.9167H13.8571M11 13.8293V8.08333M1 2.41667V15.1667C1 15.9181 1.30102 16.6388 1.83684 17.1701C2.37266 17.7015 3.09938 18 3.85714 18H18.1429C18.9006 18 19.6273 17.7015 20.1632 17.1701C20.699 16.6388 21 15.9181 21 15.1667V6.66242C20.9996 5.91121 20.6984 5.19091 20.1627 4.65986C19.6269 4.12882 18.9004 3.8305 18.1429 3.8305L11 3.83333L8.14286 1H2.42857C2.04969 1 1.68633 1.14926 1.41842 1.41493C1.15051 1.68061 1 2.04094 1 2.41667Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
                   </svg>
                 </span>
+
               </h4>
-              <ul className="flex flex-col gap-[16px] ">
-                
+              <ul className="flex flex-col gap-[16px] cursor-pointer">
+              {folders.map((folder) => (
+                folder?.title && (
+                <li key={folder.id} className="flex items-center gap-4 pl-6 w-full">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.1786 4.58932C15.1786 4.09839 15.1454 3.61457 15.0813 3.14261H12.1452L11.0424 0.882429C10.7886 0.360666 10.2574 0.0310059 9.67871 0.0310059H1.51786C0.680664 0.0310059 0 0.71167 0 1.54886V13.7676C0 13.9265 0.0237165 14.0807 0.0711496 14.2253C1.43248 14.8586 2.95271 15.2143 4.55357 15.2143C10.421 15.2143 15.1786 10.4568 15.1786 4.58932Z"
+                      fill="#FFD058"
+                    />
+                  </svg>
+                  <h2 className="text-[24px] font-medium" onClick={()=>setIsUpdate(true)} >{folder.title}</h2>
+                  <svg onClick={()=>setIsRemove(true)}
+                    width="12"
+                    height="13"
+                    viewBox="0 0 12 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3.625 1.17H3.5C3.56875 1.17 3.625 1.1115 3.625 1.04V1.17ZM3.625 1.17H8.375V1.04C8.375 1.1115 8.43125 1.17 8.5 1.17H8.375V2.34H9.5V1.04C9.5 0.466375 9.05156 0 8.5 0H3.5C2.94844 0 2.5 0.466375 2.5 1.04V2.34H3.625V1.17ZM11.5 2.34H0.5C0.223437 2.34 0 2.57237 0 2.86V3.38C0 3.4515 0.05625 3.51 0.125 3.51H1.06875L1.45469 12.0087C1.47969 12.5629 1.92031 13 2.45312 13H9.54688C10.0813 13 10.5203 12.5645 10.5453 12.0087L10.9312 3.51H11.875C11.9438 3.51 12 3.4515 12 3.38V2.86C12 2.57237 11.7766 2.34 11.5 2.34ZM9.42656 11.83H2.57344L2.19531 3.51H9.80469L9.42656 11.83Z"
+                      fill="#E14210"
+                    />
+                  </svg>
+                </li>
+                )
+              ))}
               </ul>
             </section>
             <div className="flex justify-center mt-2 gap-2 text-white cursor-pointer">
@@ -138,8 +166,11 @@ const Userdata = () => {
           </section>
         </section>
       </main>
+      {isShowAdd && <Add setIsShowAdd={setIsShowAdd} />}
+    { isShowRemove && <Remove setIsRemove={setIsRemove} folders={folders}/>}
+    {isUpdate && <Update setIsUpdate={ setIsUpdate}  isstore={isstore} />}
+    
     </div>
   );
 };
-
 export default Userdata;
