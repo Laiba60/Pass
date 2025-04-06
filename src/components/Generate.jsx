@@ -12,7 +12,7 @@ import second from "/images/second.svg";
 import third from "/images/third.svg";
 import search from "/images/search.svg";
 import { useNavigate } from "react-router-dom";
-const Generate = () => {
+const Generate = (setIsgenerate) => {
   const navigate=useNavigate();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -73,7 +73,7 @@ const Generate = () => {
       Generate Password
     </h4>
     <span className="absolute right-[17px] top-[17px] cursor-pointer">
-  <img src={cross}/>
+  <img src={cross} onClick={()=>setIsgenerate(false)}/>
 </span>
 <section className="mt-[40px] sm:mt-[7px] w-full flex flex-col gap-[3px]">
   <span className="text-white font-[400] text-[10px] sm:text-[16px] dm-sans">
@@ -178,12 +178,13 @@ const Generate = () => {
 <section className="mt-[20px] w-full flex items-center justify-end gap-[9px] sm:gap-[20px] flex-wrap">
   <button className="dm-sans bg-[#0E1A60] w-[70px] h-[30px] sm:w-[140px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none 
     border-none flex items-center justify-center text-[9px] sm:text-[15px] 
-    font-[400] text-black" onClick={()=>navigate('/userdata')}>
+    font-[400] text-black" onClick={()=>setIsgenerate(false)}>
     Close
   </button>
 </section>
 </section>
 </section>
+
 </div>         
   );
 };

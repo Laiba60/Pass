@@ -13,7 +13,8 @@ const Userdata = () => {
   const [isShowAdd, setIsShowAdd]= useState(false);
   const [isShowRemove, setIsRemove]= useState(false);
   const [isUpdate, setIsUpdate]= useState(false);
-  const [store, isstore]=useState("folder.title");
+  const [selectedFolder, setSelectedFolder] = useState(null)
+  const [Isgenerate,setIsgenerate]=useState(false);
   const { data: folders = [], isLoading } = useFetchFolder();
   return (
     <div className="relative min-h-[100vh] bg-[#0E1A60] text-white w-screen flex flex-col ">
@@ -54,8 +55,8 @@ const Userdata = () => {
                         <path d="M12.5002 13.1389C12.8531 13.1389 13.1391 12.8528 13.1391 12.5C13.1391 12.1471 12.8531 11.8611 12.5002 11.8611C12.1474 11.8611 11.8613 12.1471 11.8613 12.5C11.8613 12.8528 12.1474 13.1389 12.5002 13.1389Z" fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                         </a>
-                        <a className="w-[36px] h-[36px]  sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full" href="/generate">
-                        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[16px] h-[16px] sm:w-[24px] sm:h-[24px] mq2000:w-[38px] mq2000:h-[38px]"><circle cx="11.5" cy="11.5" r="11" stroke="white"></circle>
+                        <a className="w-[36px] h-[36px]  sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full" href="" onClick={()=>setIsgenerate()}>
+                        <svg  width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[16px] h-[16px] sm:w-[24px] sm:h-[24px] mq2000:w-[38px] mq2000:h-[38px]"><circle cx="11.5" cy="11.5" r="11" stroke="white"></circle>
                         <path d="M15.328 12.56H11.76V16.16H10.72V12.56H7.168V11.6H10.72V8H11.76V11.6H15.328V12.56Z" fill="white"></path>
                         </svg>
                         </a>
@@ -82,7 +83,6 @@ const Userdata = () => {
                     <path d="M8.14286 10.9167H13.8571M11 13.8293V8.08333M1 2.41667V15.1667C1 15.9181 1.30102 16.6388 1.83684 17.1701C2.37266 17.7015 3.09938 18 3.85714 18H18.1429C18.9006 18 19.6273 17.7015 20.1632 17.1701C20.699 16.6388 21 15.9181 21 15.1667V6.66242C20.9996 5.91121 20.6984 5.19091 20.1627 4.65986C19.6269 4.12882 18.9004 3.8305 18.1429 3.8305L11 3.83333L8.14286 1H2.42857C2.04969 1 1.68633 1.14926 1.41842 1.41493C1.15051 1.68061 1 2.04094 1 2.41667Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
                   </svg>
                 </span>
-
               </h4>
               <ul className="flex flex-col gap-[16px] cursor-pointer">
               {folders.map((folder) => (
@@ -100,7 +100,15 @@ const Userdata = () => {
                       fill="#FFD058"
                     />
                   </svg>
-                  <h2 className="text-[24px] font-medium" onClick={()=>setIsUpdate(true)} >{folder.title}</h2>
+                  <h2 
+  className="text-[24px] font-medium" 
+  onClick={() => {
+    setIsUpdate(true);
+    setSelectedFolder(folder);
+  }}
+>
+  {folder.title}
+</h2>
                   <svg onClick={()=>setIsRemove(true)}
                     width="12"
                     height="13"
@@ -168,8 +176,8 @@ const Userdata = () => {
       </main>
       {isShowAdd && <Add setIsShowAdd={setIsShowAdd} />}
     { isShowRemove && <Remove setIsRemove={setIsRemove} folders={folders}/>}
-    {isUpdate && <Update setIsUpdate={ setIsUpdate}  isstore={isstore} />}
-    
+    {isUpdate && <Update setIsUpdate={ setIsUpdate} isUpdate= {isUpdate}  selectedFolder={selectedFolder} folder={folder}/>}
+    {Isgenerate && <Generate setIsgenerate={setIsgenerate} />}
     </div>
   );
 };

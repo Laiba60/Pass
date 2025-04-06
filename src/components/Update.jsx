@@ -4,7 +4,8 @@ import table from "/images/table.svg";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useUpdateFolder } from "../hooks/useUpdateFolder";
-const Update = ({ setIsUpdate,isstore }) => {
+import { ClipLoader } from 'react-spinners';
+const Update = ({ setIsUpdate,isUpdate,selectedFolder,folder }) => {
     const navigate=useNavigate();
     const [newFolderName, setNewFolderName]=useState("");
     const updateFolderMutation = useUpdateFolder();
@@ -23,9 +24,14 @@ const Update = ({ setIsUpdate,isstore }) => {
         <h1 className="text-white text-start leading-[44.7px] text-[20px] sm:text-[32px] mb-9">Update Folder Name</h1>
         <div className="gap-[5px]">
             <label for="" className="text-white text-[12px] font-sans">Folder Name</label>
-            < input name="foldername" className="w-full dm-sans border-[1px] mb-2 h-[38.86px] rounded-[10px] border-[#374CC4] outline-none bg-[#0E1956] py-[5px] px-[5px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]"
-            value={editFolderName} 
-            onChange={(e)=>setEditFolderName(e.target.value)}/>
+            {isUpdate && (
+  <input 
+    type="text" 
+    value={selectedFolder?.title || ''} 
+    onChange={(e) => setSelectedFolder({...selectedFolder, title: e.target.value})}
+    className="border px-2 py-1 rounded"
+  />
+)}
         </div>
         </section>
         <section className="mt-[20px] w-full flex items-center justify-center gap-[9px] sm:gap-[36px] flex-wrap">
