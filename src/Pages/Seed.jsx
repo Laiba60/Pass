@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useGeneratePassphrase } from "../api";
+import { generateToken } from "../api";
 
-const Seed = () => {
+const Seed = ({}) => {
   const navigate = useNavigate();
   const { mutate: generatePassphrase, data } = useGeneratePassphrase();
   const [seed, setSeed] = useState(new Array(12).fill("••••••")); 
@@ -14,7 +15,9 @@ const Seed = () => {
   useEffect(() => {
     if (data?.seed) {
       setSeed(data.seed.split(" ")); 
+     
     }
+    console.log(data);
   }, [data]);
 
   return (
@@ -57,7 +60,14 @@ const Seed = () => {
         <div className="flex flex-col gap-[20px]">
           <button
             className="bg-[linear-gradient(90deg,_#A143FF_0%,_#5003DB_100%)] py-[19px] max-w-[312px] w-[100%] rounded-[18.37px] text-white"
-            onClick={() => navigate("/userdata")}
+            onClick={async () => {
+              try {
+                await generateToken(data?.seed);
+                navigate('/userdata');
+              } catch (error) {
+                console.error("Token generation failed:", error);
+              }
+            }}
           >
             Next
           </button>

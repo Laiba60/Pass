@@ -3,7 +3,7 @@ import icons from "/images/icons.svg";
 import { useNavigate } from 'react-router-dom';
 import table from  "/images/table.svg";
 import { useDeleteFolder } from "../hooks/useDeleteFolder";
-const Remove = ({setIsRemove, folders}) => {
+const Remove = ({setIsRemove, folders,selectedFolder}) => {
   const navigate=useNavigate();
   const deleteFolderMutation = useDeleteFolder();
   return (
@@ -128,7 +128,7 @@ const Remove = ({setIsRemove, folders}) => {
                          <section className="fixed inset-0 flex justify-center items-center bg-[#0000006B] z-50 px-[20px]">
                           <section className="bg-[#101E71] relative w-full max-w-[853px] h-[338px] rounded-[5px] flex flex-col justify-center items-center ">
                           <span className="absolute right-[17px] top-[17px] cursor-pointer">
-                            <svg  onClick={()=>(setIsRemove())} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg  onClick={()=>(setIsRemove(false))} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11 11L1 1M11 1L1 11" stroke="white" stroke-linecap="round" stroke-linejoin="round">
                             </path>
                             </svg>

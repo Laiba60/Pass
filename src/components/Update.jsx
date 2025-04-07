@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useUpdateFolder } from "../hooks/useUpdateFolder";
 import { ClipLoader } from 'react-spinners';
-const Update = ({ setIsUpdate,isUpdate,selectedFolder,folder }) => {
+const Update = ({ setIsUpdate,isUpdate,selectedFolder,setSelectedFolder,folders }) => {
     const navigate=useNavigate();
     const [newFolderName, setNewFolderName]=useState("");
     const updateFolderMutation = useUpdateFolder();
     const [editFolderId, setEditFolderId] = useState(null);
   const [editFolderName, setEditFolderName] = useState("");
+
   return (         
         <section className="fixed inset-0 flex justify-center items-center bg-[#0000006B] z-50 px-[20px]">
         <section className="bg-[#101E71] relative w-full max-w-[700px] h-[290px] flex flex-col justify  sm:h-[340px]">
@@ -45,30 +46,27 @@ font-[400] text-black" onClick={()=>setIsUpdate(false)}>Cancel</button>
     cursor: "pointer",
   }}
   onClick={() => {
-    if (editFolderId === folder.id) {
-      
+    if (selectedFolder?.id) {
       updateFolderMutation.mutate(
-        { folderId: folder.id, title: editFolderName },
+        { folderId: selectedFolder.id, title: selectedFolder.title },
         {
           onSuccess: () => {
-            setEditFolderId(null); 
+            setIsUpdate(false); 
+            setSelectedFolder(null); 
           },
         }
       );
-    } else {
-      
-      setEditFolderId(folder.id); 
-      setEditFolderName(folder.title); 
     }
   }}
-  disabled={updateFolderMutation.isPending} 
+  disabled={updateFolderMutation.isPending}
 >
   {updateFolderMutation.isPending ? (
-    <ClipLoader size={12} color="#fff" /> 
+    <ClipLoader size={12} color="#fff" />
   ) : (
-    "Update" 
+    "Update"
   )}
 </button>
+
 
 </section>
         </section>

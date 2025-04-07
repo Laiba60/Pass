@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import Add from "../components/Add";
 import Remove from "../components/Remove";
 import Update from "../components/Update";
+import Generate from "../components/Generate";
 const Userdata = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,6 +17,11 @@ const Userdata = () => {
   const [selectedFolder, setSelectedFolder] = useState(null)
   const [Isgenerate,setIsgenerate]=useState(false);
   const { data: folders = [], isLoading } = useFetchFolder();
+  const [folderToDelete, setFolderToDelete] = useState(null);
+const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+
+  
   return (
     <div className="relative min-h-[100vh] bg-[#0E1A60] text-white w-screen flex flex-col ">
       {/* Header */}
@@ -55,11 +61,11 @@ const Userdata = () => {
                         <path d="M12.5002 13.1389C12.8531 13.1389 13.1391 12.8528 13.1391 12.5C13.1391 12.1471 12.8531 11.8611 12.5002 11.8611C12.1474 11.8611 11.8613 12.1471 11.8613 12.5C11.8613 12.8528 12.1474 13.1389 12.5002 13.1389Z" fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                         </a>
-                        <a className="w-[36px] h-[36px]  sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full" href="" onClick={()=>setIsgenerate()}>
+                        <span className="w-[36px] h-[36px]  sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full"  onClick={()=>setIsgenerate(true)}>
                         <svg  width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[16px] h-[16px] sm:w-[24px] sm:h-[24px] mq2000:w-[38px] mq2000:h-[38px]"><circle cx="11.5" cy="11.5" r="11" stroke="white"></circle>
                         <path d="M15.328 12.56H11.76V16.16H10.72V12.56H7.168V11.6H10.72V8H11.76V11.6H15.328V12.56Z" fill="white"></path>
                         </svg>
-                        </a>
+                        </span>
                         <a className="w-[36px] h-[36px]  mr-3 sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full" href="/login">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] mq2000:w-[32px] mq2000:h-[32px]">
                         <path d="M0.675887 4.8375L0.625887 3.75C0.625887 3.08696 0.889279 2.45107 1.35812 1.98223C1.82696 1.51339 2.46285 1.25 3.12589 1.25H7.71589C8.37887 1.25014 9.01466 1.51363 9.48339 1.9825L10.5184 3.0175C10.9871 3.48637 11.6229 3.74986 12.2859 3.75H17.2634C17.6108 3.74996 17.9544 3.82233 18.2723 3.96249C18.5901 4.10265 18.8753 4.30751 19.1096 4.56403C19.3439 4.82054 19.5221 5.12306 19.633 5.4523C19.7438 5.78155 19.7848 6.13028 19.7534 6.47625L18.9571 15.2262C18.9007 15.8474 18.6141 16.425 18.1536 16.8457C17.6932 17.2664 17.0921 17.4998 16.4684 17.5H3.53339C2.90968 17.4998 2.3086 17.2664 1.84813 16.8457C1.38767 16.425 1.10108 15.8474 1.04464 15.2262L0.248387 6.47625C0.196183 5.89732 0.34735 5.31828 0.675887 4.83875V4.8375ZM2.73839 5C2.56474 4.99999 2.393 5.03616 2.23411 5.1062C2.07522 5.17624 1.93267 5.27862 1.81554 5.4068C1.69841 5.53499 1.60927 5.68617 1.5538 5.85072C1.49833 6.01526 1.47776 6.18956 1.49339 6.3625L2.28964 15.1125C2.3177 15.4231 2.46084 15.7119 2.69096 15.9224C2.92107 16.1329 3.22154 16.2497 3.53339 16.25H16.4684C16.7802 16.2497 17.0807 16.1329 17.3108 15.9224C17.5409 15.7119 17.6841 15.4231 17.7121 15.1125L18.5084 6.3625C18.524 6.18956 18.5034 6.01526 18.448 5.85072C18.3925 5.68617 18.3034 5.53499 18.1862 5.4068C18.0691 5.27862 17.9265 5.17624 17.7677 5.1062C17.6088 5.03616 17.437 4.99999 17.2634 5H2.73839ZM8.60089 2.86625C8.48469 2.75002 8.34672 2.65784 8.19486 2.595C8.043 2.53215 7.88024 2.49987 7.71589 2.5H3.12589C2.79844 2.49994 2.48405 2.62837 2.2503 2.85768C2.01655 3.08699 1.88211 3.39886 1.87589 3.72625L1.88339 3.9C2.15255 3.80083 2.43755 3.75083 2.73839 3.75H9.48339L8.60089 2.86625Z" fill="white">
@@ -175,8 +181,8 @@ const Userdata = () => {
         </section>
       </main>
       {isShowAdd && <Add setIsShowAdd={setIsShowAdd} />}
-    { isShowRemove && <Remove setIsRemove={setIsRemove} folders={folders}/>}
-    {isUpdate && <Update setIsUpdate={ setIsUpdate} isUpdate= {isUpdate}  selectedFolder={selectedFolder} folder={folder}/>}
+    { isShowRemove && <Remove setIsRemove={setIsRemove}selectedFolder={selectedFolder} folders={folders}/>}
+    {isUpdate && <Update setIsUpdate={ setIsUpdate} isUpdate= {isUpdate}  selectedFolder={selectedFolder} setSelectedFolder={setSelectedFolder} folders={folders}/>}
     {Isgenerate && <Generate setIsgenerate={setIsgenerate} />}
     </div>
   );

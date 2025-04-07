@@ -42,7 +42,7 @@ api.interceptors.response.use(
           });
 
           
-          const newAccessToken = response.data.access;
+          const newAccessToken = response.access;
           localStorage.setItem("authToken", newAccessToken);
 
           
@@ -58,23 +58,18 @@ api.interceptors.response.use(
   }
 );
 
-const generateToken = async (passPhrase) => {
+export const generateToken = async (seed) => {
+  const data = {
+    pass_phrase: seed.trim(),
+  };
+
   try {
-    const response = await api.post("/user/generate-token/", {
-      pass_phrase: passPhrase.trim(),
-    });
+    const response = await api.post("/user/generate-token/", data);
 
     console.log("Full API Response:", response.data);
 
-    if (!response.data?.access || !response.data?.refresh) {
-      throw new Error("Invalid API response. Missing access or refresh token.");
-    }
-
-    console.log("New Token Generated:", response.data.access);
-
-    
     localStorage.setItem("authToken", response.data.access);
-    localStorage.setItem("refreshToken", response.data.refresh);
+   
 
     return { token: response.data.access };
   } catch (error) {
@@ -82,6 +77,7 @@ const generateToken = async (passPhrase) => {
     throw error;
   }
 };
+
 
 const generatePassphrase = async () => {
   try {
@@ -117,5 +113,6 @@ export const useGenerateToken = () => {
 export const useGeneratePassphrase = () => {
   return useMutation({ mutationFn: generatePassphrase });
 };
+
 
 export default api;
