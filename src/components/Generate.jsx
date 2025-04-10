@@ -18,11 +18,11 @@ const Generate = ({setIsgenerate}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [length, setLength] = useState(10);
   const handleClick = () => {
-    setIsgenerate(false); // Use the function passed as a prop to set state
+    setIsgenerate(false); 
   };
   return (
     <div className="h-[100vh]  ">
-     <header className="w-full bg-[#101E71] fixed top-0 left-0 z-50">
+     <header className="w-full bg-[#101E71] fixed top-0 left-0 z-[-50]">
   <section className="w-full md:container mx-auto">
     <nav className="w-full flex justify-between items-center py-4 border-b border-white">
       <a href="/" className="flex items-center gap-4">
@@ -53,7 +53,7 @@ const Generate = ({setIsgenerate}) => {
     </nav>
   </section>
 </header>
-<main className="flex">
+<main className="flex ">
   <section className="w-full container flex flex-col gap-[15px]">
     <h4 className="text-white text-[22px] mt-5 font-[400]">Folders</h4>
     <ul className="flex flex-col h-[420px] overflow-auto gap-[9px]"></ul>
@@ -69,7 +69,7 @@ const Generate = ({setIsgenerate}) => {
 </div>
 </section>
 </main>
-<section className="fixed inset-0 flex justify-center items-center bg-[rgba(14,26,96,0.95)] z-50 px-[20px]">
+<section className="fixed inset-0 flex justify-center items-center bg-[rgba(14,26,96,0.95)] z-100 px-[20px] pt-[80px]">
   <section className="bg-[#101E71] relative w-full max-w-[973px] px-[8px] py-[20px] sm:p-[20px] rounded-[5px] flex flex-col items-center">
     <h4 className="flex items-center gap-[9px] text-white text-[18px] sm:text-[22px] font-[400] text-center">
       <img src={generate} className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]"/>   
