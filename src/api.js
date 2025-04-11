@@ -113,6 +113,15 @@ export const useGenerateToken = () => {
 export const useGeneratePassphrase = () => {
   return useMutation({ mutationFn: generatePassphrase });
 };
-
+export const deletePassword = async (passwordId) => {
+  try {
+    const response = await api.delete(`/passwords/${passwordId}/`);  // Adjust the URL if necessary
+    console.log("Password deleted:", response.data);
+    return response.data;  // Return the response data (e.g., success message)
+  } catch (error) {
+    console.error("Error deleting password:", error.response?.data || error.message);
+    throw error;  // Rethrow the error so it can be caught by the React Query mutation
+  }
+};
 
 export default api;

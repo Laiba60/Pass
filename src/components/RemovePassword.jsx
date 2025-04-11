@@ -1,6 +1,11 @@
  import icons from "/images/icons.svg";
-
-const RemovePassword=({setRemove})=>{
+ import { useDeletePassword } from "../hooks/useDeletePassword";
+const RemovePassword=({setRemove,itemid})=>{
+    const { mutate: deletePassword, isLoading } = useDeletePassword();
+    const handleDelete = (itemid) => {
+        console.log("Attempting to delete password with ID:",itemid );
+        deletePassword(itemid); 
+      };
     return(
     <div className="h-[100vh]">
         <header className="bg-transparent z-1000 relative">
@@ -83,23 +88,28 @@ const RemovePassword=({setRemove})=>{
                                                                         <div className="relative h-[624px] overflow-auto  sm:rounded-lg">
                                                                             <table className="w-full table-fixed text-center">
                                                                                 <thead className="text-xs text-gray-700 uppercase z-[3] bg-[#010E59]">
-                                                                                    <tr><th scope="col" className="p-0 w-[50px] h-[60px]">
+                                                                                    <tr>
+                                                                                        <th scope="col" className="p-0 w-[50px] h-[60px]">
                                                                                         <div className="flex items-center justify-center h-full">
                                                                                             <input id="checkbox-all-search" type="checkbox" className="w-[18px] h-[18px] cursor-pointer bg-[#101E71] border-[#FFFFFF] rounded"/>
                                                                                             <label for="checkbox-all-search" className="sr-only">checkbox</label>
-                                                                                            </div></th><th scope="col" className="border-[1.5px] overflow-hidden w-[140px] h-[60px] border-[#002256] dm-sans text-[15px] font-[400] px-6 py-0 text-[#DFDFDF]">Title</th>
+                                                                                            </div>
+                                                                                            </th>
+                                                                                            <th scope="col" className="border-[1.5px] overflow-hidden w-[140px] h-[60px] border-[#002256] dm-sans text-[15px] font-[400] px-6 py-0 text-[#DFDFDF]">Title</th>
                                                                                             <th scope="col" className="border-[1.5px] overflow-hidden w-[140px] h-[60px] border-[#002256] dm-sans text-[15px] font-[400] px-6 py-0 text-[#DFDFDF]">Username</th>
                                                                                             <th scope="col" className="border-[1.5px] overflow-hidden w-[140px] h-[60px] border-[#002256] dm-sans text-[15px] font-[400] px-6 py-0 text-[#DFDFDF]">URL</th>
                                                                                             <th scope="col" className="border-[1.5px] overflow-hidden w-[160px] h-[60px] border-[#002256] dm-sans text-[15px] font-[400] px-6 py-0 text-[#DFDFDF]">Notes</th>
                                                                                             <th scope="col" className="border-[1.5px] overflow-hidden w-[230px] h-[60px] border-[#002256] dm-sans text-[15px] font-[400] px-0 py-0 text-[#DFDFDF]">Modified</th>
-                                                                                            </tr></thead>
+                                                                                            </tr>
+                                                                                            </thead>
                                                                                             <tbody>
                                                                                                 <tr className="bg-transparent border-[1.5px] border-[#002256] hover:bg-[#4207AF]">
-                                                                                                    <td className="w-4 p-4" style="height: 70px;"><div class="flex items-center">
+                                                                                                    <td className="w-4 p-4" style={{height: '70px'}}>
+                                                                                                        <div class="flex items-center">
                                                                                                         <input id="checkbox-table-search-0" type="checkbox" className="w-[18px] h-[18px] bg-[#101E71] cursor-pointer border-[#FFFFFF] rounded"/>
                                                                                                         <label for="checkbox-table-search-0" className="sr-only">checkbox</label>
                                                                                                         </div>
-                                                                                                        </td><th scope="row" className="border-[1.5px] relative border-[#002256] overflow-hidden dm-sans text-[15px] font-[400] pl-10 px-6 py-0 text-[#DFDFDF] whitespace-nowrap" style="height: 70px;">java</th>
+                                                                                                        </td><th scope="row" className="border-[1.5px] relative border-[#002256] overflow-hidden dm-sans text-[15px] font-[400] pl-10 px-6 py-0 text-[#DFDFDF] whitespace-nowrap" style={{height: '70px'}}>java</th>
                                                                                                         <td className="border-[1.5px] border-[#002256] overflow-hidden dm-sans text-[15px] font-[400] px-6 py-0 text-[#DFDFDF]" style={{height: '70px'}}></td>
                                                                                                         <td className="border-[1.5px] border-[#002256] overflow-hidden dm-sans text-[15px] font-[400] px-6 py-0 text-[#DFDFDF]" style={{height: '70px'}}>
                         </td>
@@ -121,7 +131,7 @@ const RemovePassword=({setRemove})=>{
             <section className="fixed inset-0 flex justify-center items-center bg-[#0000006B] z-50 px-[20px]">
                 <section className="bg-[#101E71] relative w-full max-w-[853px] h-[338px] sm:h-[448px] rounded-[5px] flex flex-col justify-center items-center">
                     <span className="absolute right-[17px] top-[17px] cursor-pointer">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg onClick={()=>setRemove(false)} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11 11L1 1M11 1L1 11" stroke="white" stroke-linecap="round" stroke-linejoin="round">
                         </path>
                         </svg>
@@ -133,14 +143,26 @@ const RemovePassword=({setRemove})=>{
                         <section className="mt-[0px] sm:mt-[20px] w-full flex items-center justify-center gap-[9px] sm:gap-[36px] flex-wrap">
                             <button className="dm-sans  bg-[#0E1956] w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none 
           border-none flex items-center justify-center text-[12px] sm:text-[15.5px] 
-           font-[400] text-white">Cancel</button>
-           <button className="dm-sans  w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none 
-          border-none flex items-center justify-center text-[12px] sm:text-[15.5px]  text-white" style={{background: "linear-gradient(90deg, rgb(161, 67, 255) 0%, rgb(80, 3, 219) 100%); cursor: pointer"}}>Delete</button>
+           font-[400] text-black" onClick={()=>setRemove(false)}>Cancel</button>
+          <button
+     onClick={() => handleDelete(itemid)}
+      disabled={isLoading}
+      className="dm-sans w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none 
+          border-none flex items-center justify-center text-[12px] sm:text-[15.5px] text-black"
+      style={{
+        background: "linear-gradient(90deg, rgb(161, 67, 255) 0%, rgb(80, 3, 219) 100%)",
+        cursor: isLoading ? "not-allowed" : "pointer",
+        opacity: isLoading ? 0.6 : 1,
+      }}
+    >
+      {isLoading ? "Deleting..." : "Delete"}
+    </button>
           </section>
           </section>
           </section>
 
     </div>
+  
                      
     )
 };
