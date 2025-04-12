@@ -11,9 +11,13 @@ import Generate from "../components/Generate";
 import RemovePassword from "../components/RemovePassword";
 import { useFetchPasswords } from "../hooks/useFetchPasswords";
 import SaveChanges from "../components/SaveChanges";
+import { useDeletePassword } from "../hooks/useDeletePassword";
+
+
 const Userdata = () => {
   const navigate = useNavigate();
   const { data: passwords,isPasswordsLoading, isError } = useFetchPasswords();
+  const { mutate: deletePassword } = useDeletePassword();
   if (isPasswordsLoading) return <p>Loading passwords...</p>;
   if (isError) return <p>Error fetching passwords.</p>;
   const [searchQuery, setSearchQuery] = useState("");
