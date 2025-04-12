@@ -1,4 +1,4 @@
-// src/hooks/useCreatePassword.js
+
 import { useMutation } from '@tanstack/react-query';
 import api from '../api';
 

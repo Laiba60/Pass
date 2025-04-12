@@ -128,7 +128,7 @@ const RemovePassword=({setRemove,itemid})=>{
             </section>
             </section>
             </main>
-            <section className="fixed inset-0 flex justify-center items-center bg-[#0000006B] z-50 px-[20px]">
+            <section className="fixed inset-0 flex justify-center items-center bg-[#0000006B] z-50 px-[20px] ">
                 <section className="bg-[#101E71] relative w-full max-w-[853px] h-[338px] sm:h-[448px] rounded-[5px] flex flex-col justify-center items-center">
                     <span className="absolute right-[17px] top-[17px] cursor-pointer">
                     <svg onClick={()=>setRemove(false)} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,7 +145,10 @@ const RemovePassword=({setRemove,itemid})=>{
           border-none flex items-center justify-center text-[12px] sm:text-[15.5px] 
            font-[400] text-black" onClick={()=>setRemove(false)}>Cancel</button>
           <button
-     onClick={() => handleDelete(itemid)}
+    onClick={() => {
+        handleDelete(itemid);
+        setRemove(true);
+      }}
       disabled={isLoading}
       className="dm-sans w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none 
           border-none flex items-center justify-center text-[12px] sm:text-[15.5px] text-black"

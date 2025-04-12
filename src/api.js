@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 
 const BASE_URL = "https://dev.api.neuropassword.com/api";
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     accept: "application/json",
@@ -115,13 +115,25 @@ export const useGeneratePassphrase = () => {
 };
 export const deletePassword = async (passwordId) => {
   try {
-    const response = await api.delete(`/passwords/${passwordId}/`);  // Adjust the URL if necessary
+    const response = await api.delete(`/passwords/${passwordId}/`);  
     console.log("Password deleted:", response.data);
-    return response.data;  // Return the response data (e.g., success message)
+    return response.data;  
   } catch (error) {
     console.error("Error deleting password:", error.response?.data || error.message);
-    throw error;  // Rethrow the error so it can be caught by the React Query mutation
+    throw error;  
   }
 };
+export const generateRandomPassword = async (data) => {
+  
+  try {
+    const response = await axios.post("/passwords/generate-random/",data);
+    console.log("Generated password:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error generating password:", error);
+    throw error; 
+  }
+};
+
 
 export default api;

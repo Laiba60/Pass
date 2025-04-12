@@ -8,7 +8,7 @@ export const useDeletePassword = () => {
   return useMutation({
     mutationFn: deletePassword,
     onSuccess: () => {
-      // Password list ko refresh karne ke liye
+      
       queryClient.invalidateQueries('passwords');
     },
   });

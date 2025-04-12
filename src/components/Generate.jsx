@@ -12,6 +12,9 @@ import second from "/images/second.svg";
 import third from "/images/third.svg";
 import search from "/images/search.svg";
 import { useNavigate } from "react-router-dom";
+import  {useGenerateRandom}  from "../hooks/useGenerateRandom";
+import axios from "axios";
+import { getAuthHeaders } from "../utils/header";
 const Generate = ({setIsgenerate}) => {
   const navigate=useNavigate();
   const [password, setPassword] = useState("");
@@ -20,6 +23,37 @@ const Generate = ({setIsgenerate}) => {
   const handleClick = () => {
     setIsgenerate(false); 
   };
+  const { mutate, data, isLoading, isError, error } = useGenerateRandom();
+
+  const [formData, setFormData] = useState({
+    length: 10,
+    is_alphabets: true,
+    is_lowercase: true,
+    is_uppercase: true,
+    is_numeric: true,
+    is_special: false,
+  });
+
+  const handleGenerate = async () => {
+    try {
+      const response = await axios.post("https://dev.api.neuropassword.com/api/passwords/generate-random/", formData, getAuthHeaders());
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const toggleOption = (key) => {
+    setFormData(prev => ({ ...prev, [key]: !prev[key] }));
+  }
+  const handleCopy = () => {
+    navigator.clipboard.writeText(password);
+  }
+  const handleLengthChange = (value) => {
+    setLength(value);
+    setFormData((prev) => ({ ...prev, length: parseInt(value) }));
+  };
+ 
   return (
     <div className="h-[100vh]  ">
      <header className="w-full bg-[#101E71] fixed top-0 left-0 z-[-50]">
@@ -106,10 +140,10 @@ const Generate = ({setIsgenerate}) => {
 ></div>
 </div>
     <section className="flex gap-[4px] sm:gap-[10px] items-center">
-  <div className="w-[25px] h-[32px] sm:w-[62px] sm:h-[55px] flex items-center justify-center rounded-[10px] bg-[#0E1A60] border-none outline-none">
-    <img src={refresh} className="w-[11px] h-[11px] sm:w-[26px] sm:h-[26px]"/>   
+  <div  className="w-[25px] h-[32px] cursor-pointer sm:w-[62px] sm:h-[55px] flex items-center justify-center rounded-[10px] bg-[#0E1A60] border-none outline-none" onClick={handleGenerate}>
+    <img src={refresh} className="w-[11px] h-[11px] sm:w-[26px] sm:h-[26px]" />   
   </div>
-  <div className="w-[25px] h-[32px] sm:w-[62px] sm:h-[55px] flex items-center justify-center rounded-[10px] bg-[#0E1A60] border-none outline-none">
+  <div className="w-[25px] h-[32px] sm:w-[62px] sm:h-[55px] flex items-center justify-center rounded-[10px] bg-[#0E1A60] border-none outline-none"  onClick={handleCopy}>
   <img src={copy} className="w-[13px] h-[13px] sm:w-[26px] sm:h-[26px]"/>
 </div>
 </section>
@@ -130,7 +164,7 @@ const Generate = ({setIsgenerate}) => {
     max="31"
     step="3"
     value={length}  
-    onChange={(e) => setLength(e.target.value)}
+    onChange={(e) => handleLengthChange(e.target.value)}
   />
         </span>
       </section>
@@ -152,30 +186,58 @@ const Generate = ({setIsgenerate}) => {
   <span className="text-white font-[400] text-[10px] sm:text-[16px] dm-sans">Character Type</span>
   <section className="border-[1px] w-full min-h-[70px] sm:min-h-[116px] border-[#194D9E] px-[8px] sm:px-[19px] py-[20px] sm:py-[32px] flex flex-wrap justify-between items-center gap-[19px] sm:gap-[30px]">
     <section className="flex flex-1 gap-[5px] sm:gap-[14px] items-center flex-wrap justify-between">
-      <button name="is_uppercase" className="dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black  bg-[#0E1A60]">
-        A - Z
-      </button>
-      <button name="is_lowercase" className="dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black  bg-[#0E1A60]">
-        a - z
-      </button>
-      <button
+    <button
+  name="is_uppercase"
+  onClick={() => {toggleOption("is_uppercase");handleGenerate(); console.log("ghjghj")}}
+  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
+    formData.is_uppercase ? "bg-blue-900" : "bg-[#0E1A60]"
+  }`}
+>
+  A - Z
+</button>
+
+<button
+  name="is_lowercase"
+  onClick={() => toggleOption("is_lowercase")}
+  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
+    formData.is_lowercase ? "bg-blue-900" : "bg-[#0E1A60]"
+  }`}
+>
+  a - z
+</button>
+
+<button
   name="is_numeric"
-  className="dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black bg-blue-900"
+  onClick={() => toggleOption("is_numeric")}
+  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
+    formData.is_numeric ? "bg-blue-900" : "bg-[#0E1A60]"
+  }`}
 >
   0 - 9
 </button>
-      <button name="is_special" className="dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none 
+
+<button
+  name="is_special"
+  onClick={() => toggleOption("is_special")}
+  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none 
   border-none flex items-center justify-center text-[11px] sm:text-[17px] 
-  font-[400] text-black  bg-[#0E1A60]">
+  font-[400] text-black ${formData.is_special ? "bg-blue-900" : "bg-[#0E1A60]"}`}
+>
   \*_
 </button>
+
 </section>
-<button name="is_alphabets" className="dm-sans w-[78px] h-[29px] sm:w-[167px] sm:h-[43px] rounded-[6.23px] sm:rounded-[15px] outline-none 
+<button
+  name="is_alphabets"
+  onClick={() => toggleOption("is_alphabets")}
+  className={`dm-sans w-[78px] h-[29px] sm:w-[167px] sm:h-[43px] rounded-[6.23px] sm:rounded-[15px] outline-none 
   border-none flex items-center justify-center text-[8px] sm:text-[15px] 
   font-[400] text-white hover:bg-[#091246] 
-  bg-[linear-gradient(90deg,_#A143FF_0%,_#5003DB_100%)]">
+  ${formData.is_alphabets ? "bg-gradient-to-r from-[#A143FF] to-[#5003DB]" : "bg-[#0E1A60]"}`}
+>
   Extended ASCII
 </button>
+
 </section>
 </section>
 <section className="mt-[20px] w-full flex items-center justify-end gap-[9px] sm:gap-[20px] flex-wrap">

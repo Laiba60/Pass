@@ -50,18 +50,18 @@ const [isChecked, setIsChecked] = useState(false);
                 {isChecked ? (
   <div className="flex rounded-full">
    
-   <button className="w-[36px] h-[36px]  mr-3 sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full">
-                                                <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] mq2000:w-[32px] mq2000:h-[32px]">
-                                                <path d="M6.86667 7L1 13M1 13L6.86667 19M1 13H17.1333C18.6893 13 20.1815 12.3679 21.2817 11.2426C22.3819 10.1174 23 8.5913 23 7C23 5.4087 22.3819 3.88258 21.2817 2.75736C20.1815 1.63214 18.6893 1 17.1333 1H15.6667" stroke="white" stroke-linecap="round" stroke-linejoin="round">
-                                                    </path>
-                                                    </svg>
-                                                    </button>
-                                                    <button className="w-[36px] h-[36px]  mr-3 sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full" onClick={()=>setRemove(true)}>
-                                                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] mq2000:w-[32px] mq2000:h-[32px]">
-                                                        <path d="M5.13542 1.62H4.95833C5.05573 1.62 5.13542 1.539 5.13542 1.44V1.62ZM5.13542 1.62H11.8646V1.44C11.8646 1.539 11.9443 1.62 12.0417 1.62H11.8646V3.24H13.4583V1.44C13.4583 0.64575 12.823 0 12.0417 0H4.95833C4.17695 0 3.54167 0.64575 3.54167 1.44V3.24H5.13542V1.62ZM16.2917 3.24H0.708333C0.316536 3.24 0 3.56175 0 3.96V4.68C0 4.779 0.0796875 4.86 0.177083 4.86H1.51406L2.06081 16.6275C2.09622 17.3948 2.72044 18 3.47526 18H13.5247C14.2818 18 14.9038 17.397 14.9392 16.6275L15.4859 4.86H16.8229C16.9203 4.86 17 4.779 17 4.68V3.96C17 3.56175 16.6835 3.24 16.2917 3.24ZM13.3543 16.38H3.6457L3.11003 4.86H13.89L13.3543 16.38Z" fill="white">
-            </path>
-            </svg>
-            </button>
+   <a className="w-[36px] h-[36px]  mr-3 sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full " href="/Login">
+   <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="30.5" cy="30.5" r="30.35" fill="#101E71" stroke="#374CC4" stroke-width="0.3"/>
+<path d="M25.8667 28L20 34M20 34L25.8667 40M20 34H36.1333C37.6893 34 39.1815 33.3679 40.2817 32.2426C41.3819 31.1174 42 29.5913 42 28C42 26.4087 41.3819 24.8826 40.2817 23.7574C39.1815 22.6321 37.6893 22 36.1333 22H34.6667" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+ </a>
+ <a className="w-[36px] h-[36px]  mr-3 sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full" onClick={()=>setRemove(true)}>
+ <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] mq2000:w-[32px] mq2000:h-[32px]">
+ <path d="M5.13542 1.62H4.95833C5.05573 1.62 5.13542 1.539 5.13542 1.44V1.62ZM5.13542 1.62H11.8646V1.44C11.8646 1.539 11.9443 1.62 12.0417 1.62H11.8646V3.24H13.4583V1.44C13.4583 0.64575 12.823 0 12.0417 0H4.95833C4.17695 0 3.54167 0.64575 3.54167 1.44V3.24H5.13542V1.62ZM16.2917 3.24H0.708333C0.316536 3.24 0 3.56175 0 3.96V4.68C0 4.779 0.0796875 4.86 0.177083 4.86H1.51406L2.06081 16.6275C2.09622 17.3948 2.72044 18 3.47526 18H13.5247C14.2818 18 14.9038 17.397 14.9392 16.6275L15.4859 4.86H16.8229C16.9203 4.86 17 4.779 17 4.68V3.96C17 3.56175 16.6835 3.24 16.2917 3.24ZM13.3543 16.38H3.6457L3.11003 4.86H13.89L13.3543 16.38Z" fill="white">
+    </path>
+   </svg>
+   </a>
    
   </div>
 ) : (
@@ -82,7 +82,7 @@ const [isChecked, setIsChecked] = useState(false);
         <path d="M12.5002 13.1389C12.8531 13.1389 13.1391 12.8528 13.1391 12.5C13.1391 12.1471 12.8531 11.8611 12.5002 11.8611C12.1474 11.8611 11.8613 12.1471 11.8613 12.5C11.8613 12.8528 12.1474 13.1389 12.5002 13.1389Z" fill="white" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
     </a>
-    <span className="w-[36px] h-[36px] sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full" onClick={() => setIsGenerate(true)}>
+    <span className="w-[36px] h-[36px] sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full" onClick={() => setIsgenerate(true)}>
       <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[16px] h-[16px] sm:w-[24px] sm:h-[24px] mq2000:w-[38px] mq2000:h-[38px]">
         <circle cx="11.5" cy="11.5" r="11" stroke="white"></circle>
         <path d="M15.328 12.56H11.76V16.16H10.72V12.56H7.168V11.6H10.72V8H11.76V11.6H15.328V12.56Z" fill="white"></path>
@@ -189,21 +189,21 @@ const [isChecked, setIsChecked] = useState(false);
                 </tr>
               </thead>
 
-              <tbody className="relative w-full h-[565px] text-white">
+              <tbody className="relative w-full h-[200px] text-white">
   {isPasswordsLoading ? (
     <tr>
       <td colSpan="6" className="text-center py-10">Loading...</td>
     </tr>
   ) : isError ? (
     <tr>
-      <td colSpan="6" className="text-center py-10 text-red-500">Error fetching data</td>
+      <td colSpan="2" className="text-center py-10 text-red-500">Error fetching data</td>
     </tr>
   ) : (!passwords || passwords.length === 0) ? (
     <tr>
-      <td colSpan="6" className="w-full h-full">
+      <td colSpan="6" className="w-full h-full mt-4px">
         <div className="flex flex-col justify-center items-center text-center py-10">
           <img src={table} className="mb-1" alt="Secure Logo" />
-          <h1 className="text-[5px] text-white">Secure Your First Password with Us</h1>
+          <h1 className="text-[4px] text-white w-1/2">Secure Your First Password with Us</h1>
           <p className="text-[10px] font-sans leading-[13.02px] text-[#FFFFFFA1]">
             Take the first step towards safeguarding your digital world.<br />
             Start building your vault now.
