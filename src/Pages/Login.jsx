@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetchFolder } from "../hooks/useFetchFolder";
 import { useCreatePassword } from '../hooks/useCreatePassword';
-
+import { useUpdatePassword } from "../hooks/useUpdatePassword";
 import icons from "/images/icons.svg";
 import facebook from "/images/facebook.svg";
 import amazon from "/images/amazon.svg";
@@ -27,9 +27,10 @@ import slack from "/images/slack.svg";
 import uber from "/images/uber.svg";
 import binance from "/images/binance.svg";
 import api from '../api';
-const Login = () => {
+const Login = ({setIsLogin}) => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
+  const [folder, setFolder] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState("");
   const [url, setUrl] = useState(''); 
@@ -38,20 +39,20 @@ const Login = () => {
   const [notes, setNotes] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [selectedFolder, setSelectedFolder] = useState("");
-  const [folder, setFolder] = useState(false);
   const { data: folders = [] } = useFetchFolder();
   const [isCreating, setIsCreating] = useState(false);
-
+  const { mutate } = useUpdatePassword();
   const handleCreate = async () => {
     console.log("🔥 handleCreate called!");
     console.log("Title:", title);
     console.log("Folder:", folder);
-  
+    localStorage.setItem("savedTitle", title);
+localStorage.setItem("savedFolder", folder);
     if (!title || !folder) {
       alert('Title and Folder are required!');
       return;
     }
-  
+
     try {
       setIsCreating(true);
   
@@ -60,10 +61,10 @@ const Login = () => {
         folder,
       });
   
-      console.log('✅ Password created successfully', response.data);
+      console.log(' Password created successfully', response.data);
       navigate('/userdata');
     } catch (error) {
-      console.error('❌ Failed to create password:', error.response?.data || error.message);
+      console.error(' Failed to create password:', error.response?.data || error.message);
     } finally {
       setIsCreating(false);
     }
@@ -99,6 +100,32 @@ const Login = () => {
     const folderName = e.target.value;
     setSelectedFolder(folderName);
   };
+  const handleSubmit = () => {
+    updatePassword({
+      id: "abc123", 
+      data: {
+        title: "My Updated Title",
+        folder: "xyz-folder-id",
+        url: "https://example.com",
+        username: "newUser",
+        password: "newStrongPassword",
+        emoji: "",
+        notes: "Updated this on 12 April"
+      }
+    });
+  };
+  useEffect(() => {
+    const savedTitle = localStorage.getItem("editTitle");
+    const savedFolder = localStorage.getItem("editFolder");
+
+    setTitle(savedTitle || "");
+    setFolder(savedFolder || "");
+  }, [])
+ 
+const updatePassword = () => {
+  const id = localStorage.getItem("editId");
+  mutate({ id, title, folder });
+}
   return (
    <div className="h-full w-screen bg-[#101E71]">
     <header className=" z-1000 relative ">
@@ -114,7 +141,8 @@ const Login = () => {
               <path d="M12.5 11H11.71L11.43 10.73C12.4439 9.55402 13.0011 8.0527 13 6.5C13 5.21442 12.6188 3.95772 11.9046 2.8888C11.1903 1.81988 10.1752 0.986756 8.98744 0.494786C7.79973 0.00281635 6.49279 -0.125905 5.23192 0.124899C3.97104 0.375703 2.81285 0.994767 1.90381 1.90381C0.994767 2.81285 0.375703 3.97104 0.124899 5.23192C-0.125905 6.49279 0.00281635 7.79973 0.494786 8.98744C0.986756 10.1752 1.81988 11.1903 2.8888 11.9046C3.95772 12.6188 5.21442 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="white">
                 </path>
                 </svg>
-                <input className="dm-sans w-full border-[1px] rounded-[12px] border-[#374CC4] outline-none bg-[#101E71] py-[11px] mq2000:py-[21px] pl-[41px] mq2000:pl-[51px] px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] mq2000:text-[20px] leading-[32px] font-[400]" placeholder="Search..." value=""/></div>
+                <input className="dm-sans w-full border-[1px] rounded-[12px] border-[#374CC4] outline-none bg-[#101E71] py-[11px] mq2000:py-[21px] pl-[41px] mq2000:pl-[51px] px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] mq2000:text-[20px] leading-[32px] font-[400]"
+                 placeholder="Search..." value=""/></div>
                 <div className="flex justify-end gap-[5px] md:gap-[19px] z-[2]">
                   <div className="relative inline-block w-[36px] align-bottom md:hidden">
                     <input id="searchleft" type="search" name="q" placeholder="Search" className="absolute font-sans left-0 focus:w-[160px]  focus:p-[0_16px_0_0] focus:pl-[10px] placeholder:text-white text-white text-[12px] focus:border-[.5px] rounded-[20px] border-[#374CC4] bg-[#101E71] outline-none p-0 w-0 h-full z-10 transition-[width] duration-400" value=""/>
@@ -291,7 +319,7 @@ const Login = () => {
                                                htmlFor="folder-select"
                                                  className="dm-sans text-[#DFDFDF] text-[9.77px] sm:text-[16px] leading-[19.54px] sm:leading-[32px] font-[400]"
                                                      >
-                                                  Choose your folder
+                                                  Choose your Folder
                                                        </label>
 
                                                  <div className="relative flex-1">
@@ -378,25 +406,26 @@ const Login = () => {
                                                    </div>
                                                   <div className="flex gap-[12px] justify-center md:justify-end mt-[15px] bg-[#101E71] h-full">
                                                <button className="py-[17px] w-[140px] rounded-[18.37px] bg-[#101E71] border-none outline-none text-black text-[15.5px] font-[400] dm-sans">Cancel</button>
-             
                                                <button
   className="dm-sans w-[140px] h-[57px] flex items-center justify-center rounded-[18.37px] border-none outline-none text-white text-[15.5px] font-[400] bg-[linear-gradient(90deg,_#A143FF_0%,_#5003DB_100%)]"
   style={{
     background: 'linear-gradient(90deg, rgb(161, 67, 255) 0%, rgb(80, 3, 219) 100%)',
     cursor: 'pointer',
   }}
-  onClick={handleCreate} // 👈 Button click will trigger handleCreate
-  disabled={isCreating}  // 👈 Disable the button while creating
+  onClick={() => {
+    handleCreate();
+    setIsLogin(true);
+  }}
+  disabled={isCreating}  
 >
   {isCreating ? 'Creating...' : 'Create Password'}
 </button>
 
-                                            </div>
-                                           
-                                                                                                                          
+                                            </div>                                                                                   
                                          </section>
                                            </section>
                                           </main>
+                                         
                                            </div>
                                                                                                                         
                                                                                                                               

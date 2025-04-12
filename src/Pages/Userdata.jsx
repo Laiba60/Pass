@@ -10,6 +10,7 @@ import Update from "../components/Update";
 import Generate from "../components/Generate";
 import RemovePassword from "../components/RemovePassword";
 import { useFetchPasswords } from "../hooks/useFetchPasswords";
+import SaveChanges from "../components/SaveChanges";
 const Userdata = () => {
   const navigate = useNavigate();
   const { data: passwords,isPasswordsLoading, isError } = useFetchPasswords();
@@ -26,12 +27,20 @@ const Userdata = () => {
 const [showDeleteModal, setShowDeleteModal] = useState(false);
 const [isRemove,setRemove]=useState(false);
 const [isChecked, setIsChecked] = useState(false);
+const [IsLogin,setIsLogin]=useState(false);
+const [title, setTitle] = useState("");
 
+const handleRowClick = (title, folder, id) => {
+  localStorage.setItem("editTitle", title);
+  localStorage.setItem("editFolder", folder);
+  localStorage.setItem("editId", id); 
 
+  navigate("/Login");
+};
   
   return (
     <div className="relative min-h-[100vh] bg-[#0E1A60] text-white w-screen flex flex-col ">
-      {/* Header */}
+      
       <header className="bg-transparent z-1000 relative ml-30">
         <section className="md:container">
           <nav className="relative flex justify-between items-center py-[16px] mq2000:py-[24px]  gradient-border gap-[20px]">
@@ -218,7 +227,9 @@ const [isChecked, setIsChecked] = useState(false);
           <input type="checkbox" checked={isChecked}
   onChange={(e) => setIsChecked(e.target.checked)}className="w-[18px] h-[18px] cursor-pointer" />
         </td>
-        <td className="border border-[#002256] px-2 py-1">{item.title}</td>
+        <td className="border border-[#002256] px-2 py-1" 
+      onClick={() => handleRowClick(item.title, item.folder, item.id)}
+        >{item.title}</td>
         <td className="border border-[#002256] px-2 py-1">{item.username}</td>
         <td className="border border-[#002256] px-2 py-1">{item.url}</td>
         <td className="border border-[#002256] px-2 py-1">{item.notes}</td>
@@ -243,7 +254,7 @@ const [isChecked, setIsChecked] = useState(false);
     { isShowRemove && <Remove setIsRemove={setIsRemove}selectedFolder={selectedFolder} folders={folders}/>}
     {isUpdate && <Update setIsUpdate={ setIsUpdate} isUpdate= {isUpdate}  selectedFolder={selectedFolder} setSelectedFolder={setSelectedFolder} folders={folders}/>}
     {Isgenerate && <Generate setIsgenerate={setIsgenerate} />}
-   
+    {IsLogin && <SaveChanges setIsLogin={setIsLogin}/>}
     </div>
   );
 };

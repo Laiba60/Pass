@@ -143,7 +143,7 @@ const Generate = ({setIsgenerate}) => {
   <div  className="w-[25px] h-[32px] cursor-pointer sm:w-[62px] sm:h-[55px] flex items-center justify-center rounded-[10px] bg-[#0E1A60] border-none outline-none" onClick={handleGenerate}>
     <img src={refresh} className="w-[11px] h-[11px] sm:w-[26px] sm:h-[26px]" />   
   </div>
-  <div className="w-[25px] h-[32px] sm:w-[62px] sm:h-[55px] flex items-center justify-center rounded-[10px] bg-[#0E1A60] border-none outline-none"  onClick={handleCopy}>
+  <div className="w-[25px] h-[32px] sm:w-[62px] sm:h-[55px] flex items-center justify-center rounded-[10px] bg-[#0E1A60] border-none outline-none" onClick={handleCopy}>
   <img src={copy} className="w-[13px] h-[13px] sm:w-[26px] sm:h-[26px]"/>
 </div>
 </section>
