@@ -24,7 +24,6 @@ const Generate = ({setIsgenerate}) => {
     setIsgenerate(false); 
   };
   const { mutate, data, isLoading, isError, error } = useGenerateRandom();
-
   const [formData, setFormData] = useState({
     length: 10,
     is_alphabets: true,
@@ -42,7 +41,6 @@ const Generate = ({setIsgenerate}) => {
       console.log(error)
     }
   };
-
   const toggleOption = (key) => {
     setFormData(prev => ({ ...prev, [key]: !prev[key] }));
   }
@@ -53,7 +51,6 @@ const Generate = ({setIsgenerate}) => {
     setLength(value);
     setFormData((prev) => ({ ...prev, length: parseInt(value) }));
   };
- 
   return (
     <div className="h-[100vh]  ">
      <header className="w-full bg-[#101E71] fixed top-0 left-0 z-[-50]">
@@ -237,7 +234,6 @@ const Generate = ({setIsgenerate}) => {
 >
   Extended ASCII
 </button>
-
 </section>
 </section>
 <section className="mt-[20px] w-full flex items-center justify-end gap-[9px] sm:gap-[20px] flex-wrap">
@@ -249,7 +245,6 @@ const Generate = ({setIsgenerate}) => {
 </section>
 </section>
 </section>
-
 </div>         
   );
 };

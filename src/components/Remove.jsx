@@ -1,5 +1,4 @@
 import React from 'react'
-import icons from "/images/icons.svg";
 import { useNavigate } from 'react-router-dom';
 import { useDeleteFolder } from "../hooks/useDeleteFolder";
 const Remove = ({setIsRemove, folders,selectedFolder}) => {
