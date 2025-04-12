@@ -1,7 +1,6 @@
 import React from 'react'
 import icons from "/images/icons.svg";
 import { useNavigate } from 'react-router-dom';
-import table from  "/images/table.svg";
 import { useDeleteFolder } from "../hooks/useDeleteFolder";
 const Remove = ({setIsRemove, folders,selectedFolder}) => {
   const navigate=useNavigate();
@@ -18,16 +17,13 @@ const Remove = ({setIsRemove, folders,selectedFolder}) => {
                             <section className="flex flex-col justify-center text-center mb-7 sm:mb-12px ">
                             <h1 className="text-white leading-[20px] sm:leading-[44.7px] text-[15px] sm:text-[16px] mb-4">Are you sure you want to delete  this folder.?</h1>
                             <p className="font-sans text-white px-5 max-w-[600px] leading-[20.83px] text-[11px] sm:text-[16px] ml-19">If you will delete this folder then existing passwords and the accounts will delete automatically. Are you sure you want to delete?</p>
-
                             </section>
                             <section className="mt-[0px] sm:mt-[20px] w-full flex items-center justify-center gap-[9px] sm:gap-[36px] flex-wrap">
                               <button className="dm-sans  bg-[#0E1956] w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none 
             border-none flex items-center justify-center text-[12px] sm:text-[15.5px] 
              font-[400] text-black" onClick={()=>(setIsRemove(false))}>Cancel</button>
-
 {folders?.map((folder) => (
   <div key={folder?.id} className="flex items-center justify-between mb-2">
-    
     <button
       className="dm-sans w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none border-none flex items-center justify-center text-[12px] sm:text-[16px] text-white"
       style={{
@@ -38,21 +34,15 @@ const Remove = ({setIsRemove, folders,selectedFolder}) => {
          deleteFolderMutation.mutate(folder.id)
       setIsRemove(false)
       }}
-     
     >
       Delete
     </button>
   </div>
 ))}
   </section>
-
   </section>
-
  </section>
-
-   
   )
 }
-
 export default Remove;
 

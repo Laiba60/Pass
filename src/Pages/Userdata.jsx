@@ -12,8 +12,6 @@ import RemovePassword from "../components/RemovePassword";
 import { useFetchPasswords } from "../hooks/useFetchPasswords";
 import SaveChanges from "../components/SaveChanges";
 import { useDeletePassword } from "../hooks/useDeletePassword";
-
-
 const Userdata = () => {
   const navigate = useNavigate();
   const { data: passwords,isPasswordsLoading, isError } = useFetchPasswords();
@@ -33,18 +31,14 @@ const [isRemove,setRemove]=useState(false);
 const [isChecked, setIsChecked] = useState(false);
 const [IsLogin,setIsLogin]=useState(false);
 const [title, setTitle] = useState("");
-
 const handleRowClick = (title, folder, id) => {
   localStorage.setItem("editTitle", title);
   localStorage.setItem("editFolder", folder);
   localStorage.setItem("editId", id); 
-
   navigate("/Login");
 };
-  
   return (
     <div className="relative min-h-[100vh] bg-[#0E1A60] text-white w-screen flex flex-col ">
-      
       <header className="bg-transparent z-1000 relative ml-30">
         <section className="md:container">
           <nav className="relative flex justify-between items-center py-[16px] mq2000:py-[24px]  gradient-border gap-[20px]">
@@ -62,7 +56,6 @@ const handleRowClick = (title, folder, id) => {
                 </div>
                 {isChecked ? (
   <div className="flex rounded-full">
-   
    <a className="w-[36px] h-[36px]  mr-3 sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full " href="/Login">
    <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="30.5" cy="30.5" r="30.35" fill="#101E71" stroke="#374CC4" stroke-width="0.3"/>
@@ -75,11 +68,9 @@ const handleRowClick = (title, folder, id) => {
     </path>
    </svg>
    </a>
-   
   </div>
 ) : (
   <div className="flex justify-end gap-[5px] md:gap-[19px] z-[2]">
-   
     <div className="relative inline-block w-[36px] align-bottom md:hidden">
       <span className="inline-block pointer-events-none">
         <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[13px] h-[13px]">
@@ -108,10 +99,9 @@ const handleRowClick = (title, folder, id) => {
     </a>
   </div>
 )}
-
-                          </div>
-                          </nav>
-                          </section>
+  </div>
+   </nav>
+</section>
       </header>
       <main>
         <section className="w-full h-full relative flex mt-[10px] container mx-auto gap-[7px] ">
@@ -119,7 +109,6 @@ const handleRowClick = (title, folder, id) => {
             <section className="h-[575px] flex flex-col gap-[16px]">
               <h4 className="px-[21px] pb-2 flex justify-between text-white text-[16px] mt-[25px] font-[400]">
                 Folders
-
                 <span className="cursor-pointer" onClick={()=>setIsShowAdd(true)}>
                   <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1">
                     <path d="M8.14286 10.9167H13.8571M11 13.8293V8.08333M1 2.41667V15.1667C1 15.9181 1.30102 16.6388 1.83684 17.1701C2.37266 17.7015 3.09938 18 3.85714 18H18.1429C18.9006 18 19.6273 17.7015 20.1632 17.1701C20.699 16.6388 21 15.9181 21 15.1667V6.66242C20.9996 5.91121 20.6984 5.19091 20.1627 4.65986C19.6269 4.12882 18.9004 3.8305 18.1429 3.8305L11 3.83333L8.14286 1H2.42857C2.04969 1 1.68633 1.14926 1.41842 1.41493C1.15051 1.68061 1 2.04094 1 2.41667Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -151,29 +140,29 @@ const handleRowClick = (title, folder, id) => {
 >
   {folder.title}
 </h2>
-                  <svg onClick={()=>setIsRemove(true)}
-                    width="12"
-                    height="13"
-                    viewBox="0 0 12 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M3.625 1.17H3.5C3.56875 1.17 3.625 1.1115 3.625 1.04V1.17ZM3.625 1.17H8.375V1.04C8.375 1.1115 8.43125 1.17 8.5 1.17H8.375V2.34H9.5V1.04C9.5 0.466375 9.05156 0 8.5 0H3.5C2.94844 0 2.5 0.466375 2.5 1.04V2.34H3.625V1.17ZM11.5 2.34H0.5C0.223437 2.34 0 2.57237 0 2.86V3.38C0 3.4515 0.05625 3.51 0.125 3.51H1.06875L1.45469 12.0087C1.47969 12.5629 1.92031 13 2.45312 13H9.54688C10.0813 13 10.5203 12.5645 10.5453 12.0087L10.9312 3.51H11.875C11.9438 3.51 12 3.4515 12 3.38V2.86C12 2.57237 11.7766 2.34 11.5 2.34ZM9.42656 11.83H2.57344L2.19531 3.51H9.80469L9.42656 11.83Z"
-                      fill="#E14210"
-                    />
-                  </svg>
-                </li>
-                )
-              ))}
-              </ul>
-            </section>
-            <div className="flex justify-center mt-2 gap-2 text-white cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-[30px]">
-                <path fill="#ffffff" d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"></path>
-              </svg>
-              Logout
-            </div>
+ <svg onClick={()=>setIsRemove(true)}
+  width="12"
+  height="13"
+ viewBox="0 0 12 13"
+ fill="none"
+ xmlns="http://www.w3.org/2000/svg"
+>
+ <path
+ d="M3.625 1.17H3.5C3.56875 1.17 3.625 1.1115 3.625 1.04V1.17ZM3.625 1.17H8.375V1.04C8.375 1.1115 8.43125 1.17 8.5 1.17H8.375V2.34H9.5V1.04C9.5 0.466375 9.05156 0 8.5 0H3.5C2.94844 0 2.5 0.466375 2.5 1.04V2.34H3.625V1.17ZM11.5 2.34H0.5C0.223437 2.34 0 2.57237 0 2.86V3.38C0 3.4515 0.05625 3.51 0.125 3.51H1.06875L1.45469 12.0087C1.47969 12.5629 1.92031 13 2.45312 13H9.54688C10.0813 13 10.5203 12.5645 10.5453 12.0087L10.9312 3.51H11.875C11.9438 3.51 12 3.4515 12 3.38V2.86C12 2.57237 11.7766 2.34 11.5 2.34ZM9.42656 11.83H2.57344L2.19531 3.51H9.80469L9.42656 11.83Z"
+fill="#E14210"
+ />
+ </svg>
+ </li>
+ )
+))}
+ </ul>
+ </section>
+ <div className="flex justify-center mt-2 gap-2 text-white cursor-pointer">
+ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-[30px]">
+ <path fill="#ffffff" d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"></path>
+   </svg>
+  Logout
+ </div>
           </section>
           <section className="flex-1">
       <section className="w-full rounded-[12px] flex flex-col gap-[11px]">
@@ -242,13 +231,11 @@ const handleRowClick = (title, folder, id) => {
         </td>
         {isRemove && <RemovePassword setRemove={setRemove} itemid={item.id} />}
       </tr>
-
     ))
   )}
 </tbody>
-
-            </table>
-          </div>
+ </table>
+ </div>
         </section>
       </section>
     </section>
