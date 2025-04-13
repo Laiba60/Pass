@@ -64,6 +64,7 @@ export const generateToken = async (seed) => {
   };
 
   try {
+    console.log("Print Seed brfore the API call",seed);
     const response = await api.post("/user/generate-token/", data);
 
     console.log("Full API Response:", response.data);

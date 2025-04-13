@@ -27,7 +27,7 @@ import slack from "/images/slack.svg";
 import uber from "/images/uber.svg";
 import binance from "/images/binance.svg";
 import api from '../api';
-const Login = ({setIsLogin}) => {
+const RootEntery = ({setIsLogin}) => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [folder, setFolder] = useState(false);
@@ -432,4 +432,4 @@ const updatePassword = () => {
                                          );
                                           };
 
-export default Login;
+export default RootEntery;

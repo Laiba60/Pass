@@ -8,7 +8,7 @@ const Header = () => {
       <header className="relative z-[1000] bg-gradient-to-r from-[#0e1a60] to-[#2A3992] border-b border-white">
           <nav className="pt-[10px] pb-[8px] px-[10px] sm:px-[20px] flex justify-between items-center">
             
-            {/* LOGO */}
+           
             <a className="flex items-center gap-[8px]" href="/">
               <img src="/images/icon.svg" alt="Logo" className="cursor-pointer w-[55px] h-[40px] md:w-[80px]" />
               <h2 className="text-[16px] md:text-[18px] font-[400] text-white whitespace-nowrap">
@@ -16,14 +16,14 @@ const Header = () => {
               </h2>
             </a>
 
-            {/* NAV BUTTONS */}
+          
             <div className="items-center gap-[20px] hidden md:flex">
               <a href="/register"
                 className="w-[140px] h-[45px] bg-white hover:bg-[#e7e7e7] text-black border border-white rounded-[10px] flex justify-center items-center text-[18px] font-[400] transition-all"
               >
                 Sign Up
               </a>
-              <a href="/login"
+              <a href="/auth/logon"
                 className="w-[140px] h-[45px] bg-[#101E71] text-white border border-white rounded-[10px] flex justify-center items-center text-[18px] font-[400] transition-all hover:bg-[#0E1A60]"
               >
                 Login

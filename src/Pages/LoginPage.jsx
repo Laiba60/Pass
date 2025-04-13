@@ -2,18 +2,19 @@ import icons from "/images/icons.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useGenerateToken } from "../api"
+import { generateToken } from "../api";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [keySeed, setKeySeed] = useState("");
+  const [Seed, setKeySeed] = useState("");
   const { mutate: generateToken, isLoading, isError, error } = useGenerateToken();
   const handleLogin = () => {
-    if (!keySeed.trim()) {
+    if (!Seed.trim()) {
       alert("Please enter your key seed.");
       return;
     }
 
-    generateToken(keySeed, {
+    generateToken(Seed, {
       onSuccess: () => {
         navigate("/dashboard"); 
       },
@@ -63,7 +64,7 @@ const LoginPage = () => {
         <input
           type="text"
           placeholder="Enter your key seed..."
-          value={keySeed}
+          value={Seed}
           onChange={(e) => setKeySeed(e.target.value)}
           className="w-full max-w-xs sm:max-w-md p-4 sm:p-5 rounded-lg bg-[#0E1A60] text-white placeholder-white/60 border-none focus:ring-2"
         />
