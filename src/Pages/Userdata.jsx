@@ -35,7 +35,7 @@ const handleRowClick = (title, folder, id) => {
   localStorage.setItem("editTitle", title);
   localStorage.setItem("editFolder", folder);
   localStorage.setItem("editId", id); 
-  navigate("/Login");
+  navigate("/root");
 };
   return (
     <div className="relative min-h-[100vh] bg-[#0E1A60] text-white w-screen flex flex-col ">
@@ -56,7 +56,7 @@ const handleRowClick = (title, folder, id) => {
                 </div>
                 {isChecked ? (
   <div className="flex rounded-full">
-   <a className="w-[36px] h-[36px]  mr-3 sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full " href="/Login">
+   <a className="w-[36px] h-[36px]  mr-3 sm:w-[61px] sm:h-[61px] mq2000:w-[81px] mq2000:h-[81px] flex items-center justify-center bg-[#101E71] border-[.3px] border-[#374CC4] rounded-full " href="/root">
    <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="30.5" cy="30.5" r="30.35" fill="#101E71" stroke="#374CC4" stroke-width="0.3"/>
 <path d="M25.8667 28L20 34M20 34L25.8667 40M20 34H36.1333C37.6893 34 39.1815 33.3679 40.2817 32.2426C41.3819 31.1174 42 29.5913 42 28C42 26.4087 41.3819 24.8826 40.2817 23.7574C39.1815 22.6321 37.6893 22 36.1333 22H34.6667" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>

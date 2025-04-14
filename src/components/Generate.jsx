@@ -35,12 +35,9 @@ const Generate = ({ setIsgenerate }) => {
 
   const handleGenerate = async () => {
     try {
-      const response = await axios.post(
-        "https://dev.api.neuropassword.com/api/passwords/generate-random/",
-        formData,
-        getAuthHeaders()
-      );
-      setPassword(response.data.password);
+      const response = await axios.post("https://dev.api.neuropassword.com/api/passwords/generate-random/", formData, getAuthHeaders());
+      console.log(response)
+      setPassword(response.data.password)
     } catch (error) {
       console.log(error);
     }
@@ -57,14 +54,74 @@ const Generate = ({ setIsgenerate }) => {
   };
   return (
     <div className="h-[100vh]  ">
-      <header className="w-full bg-[#101E71] fixed top-0 left-0 z-[-50]">
-        <section className="w-full md:container mx-auto">
-          <nav className="w-full flex justify-between items-center py-4 border-b border-white">
-            <a href="/" className="flex items-center gap-4">
-              <img
-                src={icons}
-                className="w-[70px] cursor-pointer ml-2 md:ml-0"
-                alt="Logo"
+     <header className="w-full bg-[#101E71] fixed top-0 left-0 z-[-50]">
+  <section className="w-full md:container mx-auto">
+    <nav className="w-full flex justify-between items-center py-4 border-b border-white">
+      <a href="/" className="flex items-center gap-4">
+        <img src={icons} className="w-[70px] cursor-pointer ml-2 md:ml-0" alt="Logo" />
+        <h2 className="text-white text-[22px] whitespace-nowrap">Password Manager</h2>
+      </a>
+
+      <div className="flex-1 items-center flex justify-end gap-4">
+       
+        <div className="relative hidden md:block border-2 border-blue-500 rounded-full bg-[#101E71] w-full max-w-[300px]">
+          <img src={search} className="absolute top-1/2 left-3 -translate-y-1/2 w-7 h-7" alt="Search" />
+          <input
+            type="search"
+            placeholder="Search"
+            className="w-full p-2 pl-12 text-white bg-transparent outline-none placeholder:text-gray-300"
+          />
+        </div>
+        <a className="w-14 h-14 flex items-center justify-center bg-[#101E71] border border-[#374CC4] rounded-full" href="/dashboard/folders">
+          <img src={first} className="w-6 h-6" alt="Folders" />
+        </a>
+        <a className="w-14 h-14 flex items-center justify-center bg-[#101E71] border border-[#374CC4] rounded-full" href="/dashboard/add">
+          <img src={second} className="w-6 h-6" alt="Add" />
+        </a>
+        <a className="w-14 h-14 flex items-center justify-center bg-[#101E71] border border-[#374CC4] rounded-full mr-3" href="/dashboard/folders">
+          <img src={third} className="w-6 h-6" alt="Settings" />
+        </a>
+      </div>
+    </nav>
+  </section>
+</header>
+<main className="flex ">
+  <section className="w-full container flex flex-col gap-[15px]">
+    <h4 className="text-white text-[22px] mt-5 font-[400]">Folders</h4>
+    <ul className="flex flex-col h-[420px] overflow-auto gap-[9px]"></ul>
+    <div className="flex justify-between">
+      <div className="flex justify-start items-center text-[14px] rounded-[10px] h-10 px-2 mt-[15px] gap-[5px] text-white cursor-pointer" 
+        style={{background: "linear-gradient(90deg, rgb(161, 67, 255) 0%, rgb(80, 3, 219) 100%)"}}>
+        <img src={first} className="w-[15px] mb-[2px]"/>  
+        Logout
+        </div>
+        <div className="flex items-end text-end justify-end">
+  <img src={first}/>   
+</div>
+</div>
+</section>
+</main>
+<section className="fixed inset-0 flex justify-center items-center bg-[rgba(14,26,96,0.95)] z-100 px-[20px] pt-[80px]">
+  <section className="bg-[#101E71] relative w-full max-w-[973px] px-[8px] py-[20px] sm:p-[20px] rounded-[5px] flex flex-col items-center">
+    <h4 className="flex items-center gap-[9px] text-white text-[18px] sm:text-[22px] font-[400] text-center">
+      <img src={generate} className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]"/>   
+      Generate Password
+    </h4>
+    <span className="absolute right-[17px] top-[17px] cursor-pointer">
+  <img src={cross} onClick={handleClick}/>
+</span>
+<section className="mt-[40px] sm:mt-[7px] w-full flex flex-col gap-[3px]">
+  <span className="text-white font-[400] text-[10px] sm:text-[16px] dm-sans">
+    "Password Quality: "
+    "Fair"
+  </span>
+  <section className="w-full flex flex-wrap justify-between items-center gap-[4px] sm:gap-[11px]">
+  <div className="relative password-input flex-1">
+       <input
+    type={showPassword ? "text" : "password"}  
+     value={password}  
+                 
+                className="relative w-full dm-sans rounded-[10px] outline-none bg-[#0E1a60] py-[10px] sm:py-[12px] px-[7px] sm:px-[17px] placeholder:text-[#DFDFDF36] text-white text-[9px] sm:text-[16px] font-[400]"
               />
               <h2 className="text-white text-[22px] whitespace-nowrap">
                 Password Manager
@@ -255,42 +312,41 @@ const Generate = ({ setIsgenerate }) => {
                   A - Z
                 </button>
 
-                <button
-                  name="is_lowercase"
-                  onClick={() => toggleOption("is_lowercase")}
-                  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
-                    formData.is_lowercase ? "bg-blue-900" : "bg-[#0E1A60]"
-                  }`}
-                >
-                  a - z
-                </button>
-
-                <button
-                  name="is_numeric"
-                  onClick={() => toggleOption("is_numeric")}
-                  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
-                    formData.is_numeric ? "bg-blue-900" : "bg-[#0E1A60]"
-                  }`}
-                >
-                  0 - 9
-                </button>
-
-                <button
-                  name="is_special"
-                  onClick={() => toggleOption("is_special")}
-                  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none 
-  border-none flex items-center justify-center text-[11px] sm:text-[17px] 
-  font-[400] text-black ${
-    formData.is_special ? "bg-blue-900" : "bg-[#0E1A60]"
+<button
+  name="is_lowercase"
+  onClick={() => {toggleOption("is_lowercase");handleGenerate(); console.log("ghjghj")}}
+  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
+    formData.is_lowercase ? "bg-blue-900" : "bg-[#0E1A60]"
   }`}
-                >
-                  \*_
-                </button>
-              </section>
-              <button
-                name="is_alphabets"
-                onClick={() => toggleOption("is_alphabets")}
-                className={`dm-sans w-[78px] h-[29px] sm:w-[167px] sm:h-[43px] rounded-[6.23px] sm:rounded-[15px] outline-none 
+>
+  a - z
+</button>
+
+<button
+  name="is_numeric"
+  onClick={() => {toggleOption("is_numeric");handleGenerate(); console.log("ghjghj")}}
+  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
+    formData.is_numeric ? "bg-blue-900" : "bg-[#0E1A60]"
+  }`}
+>
+  0 - 9
+</button>
+
+<button
+  name="is_special"
+  onClick={() => {toggleOption("is_special");handleGenerate(); console.log("ghjghj")}}
+  className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none 
+  border-none flex items-center justify-center text-[11px] sm:text-[17px] 
+  font-[400] text-black ${formData.is_special ? "bg-blue-900" : "bg-[#0E1A60]"}`}
+>
+  \*_
+</button>
+
+</section>
+<button
+  name="is_alphabets"
+  onClick={() => {toggleOption("is_alphabets");handleGenerate(); console.log("ghjghj")}}
+  className={`dm-sans w-[78px] h-[29px] sm:w-[167px] sm:h-[43px] rounded-[6.23px] sm:rounded-[15px] outline-none 
   border-none flex items-center justify-center text-[8px] sm:text-[15px] 
   font-[400] text-white hover:bg-[#091246] 
   ${
