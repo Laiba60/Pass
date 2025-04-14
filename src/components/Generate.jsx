@@ -37,6 +37,7 @@ const Generate = ({setIsgenerate}) => {
     try {
       const response = await axios.post("https://dev.api.neuropassword.com/api/passwords/generate-random/", formData, getAuthHeaders());
       console.log(response)
+      setPassword(response.data.password)
     } catch (error) {
       console.log(error)
     }
@@ -119,7 +120,7 @@ const Generate = ({setIsgenerate}) => {
        <input
     type={showPassword ? "text" : "password"}  
      value={password}  
-                onChange={(e) => setPassword(e.target.value)} //
+                 
                 className="relative w-full dm-sans rounded-[10px] outline-none bg-[#0E1a60] py-[10px] sm:py-[12px] px-[7px] sm:px-[17px] placeholder:text-[#DFDFDF36] text-white text-[9px] sm:text-[16px] font-[400]"
               />
               <span 
@@ -195,7 +196,7 @@ const Generate = ({setIsgenerate}) => {
 
 <button
   name="is_lowercase"
-  onClick={() => toggleOption("is_lowercase")}
+  onClick={() => {toggleOption("is_lowercase");handleGenerate(); console.log("ghjghj")}}
   className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
     formData.is_lowercase ? "bg-blue-900" : "bg-[#0E1A60]"
   }`}
@@ -205,7 +206,7 @@ const Generate = ({setIsgenerate}) => {
 
 <button
   name="is_numeric"
-  onClick={() => toggleOption("is_numeric")}
+  onClick={() => {toggleOption("is_numeric");handleGenerate(); console.log("ghjghj")}}
   className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none border-none flex items-center justify-center text-[11px] sm:text-[17px] font-[400] text-black ${
     formData.is_numeric ? "bg-blue-900" : "bg-[#0E1A60]"
   }`}
@@ -215,7 +216,7 @@ const Generate = ({setIsgenerate}) => {
 
 <button
   name="is_special"
-  onClick={() => toggleOption("is_special")}
+  onClick={() => {toggleOption("is_special");handleGenerate(); console.log("ghjghj")}}
   className={`dm-sans flex-1 h-[30px] sm:h-[50px] rounded-[6.23px] sm:rounded-[15px] outline-none 
   border-none flex items-center justify-center text-[11px] sm:text-[17px] 
   font-[400] text-black ${formData.is_special ? "bg-blue-900" : "bg-[#0E1A60]"}`}
@@ -226,7 +227,7 @@ const Generate = ({setIsgenerate}) => {
 </section>
 <button
   name="is_alphabets"
-  onClick={() => toggleOption("is_alphabets")}
+  onClick={() => {toggleOption("is_alphabets");handleGenerate(); console.log("ghjghj")}}
   className={`dm-sans w-[78px] h-[29px] sm:w-[167px] sm:h-[43px] rounded-[6.23px] sm:rounded-[15px] outline-none 
   border-none flex items-center justify-center text-[8px] sm:text-[15px] 
   font-[400] text-white hover:bg-[#091246] 
