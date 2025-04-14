@@ -193,13 +193,13 @@ const updatePassword = () => {
               </div>
               <div className="flex-1 flex flex-col md:gap-[4px]">
                 <label className="dm-sans text-[#DFDFDF] text-[9.77px] sm:text-[16px] leading-[19.54px] sm:leading-[32px] font-[400]">Username</label>
-                <input name="username" className="w-full dm-sans border-[1px] mb-2 md:mb-0 h-[37.86px] md:h-auto rounded-[10px] border-[#374CC4] outline-none bg-[#101E71] py-[15px] px-[12px] md:px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]" value=""/></div>
+                <input name="username" className="w-full dm-sans border-[1px] mb-2 md:mb-0 h-[37.86px] md:h-auto rounded-[10px] border-[#374CC4] outline-none bg-[#101E71] py-[15px] px-[12px] md:px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]" value={username} onChange={(e)=>setUsername(e.target.value)}/></div>
                 </div>
                 <div className="flex flex-col md:gap-[38px] flex-wrap md:flex-row">
                   <div className="flex-1 flex flex-col md:gap-[4px]">
                     <label className="dm-sans text-[#DFDFDF] text-[9.77px] sm:text-[16px] leading-[19.54px] sm:leading-[32px] font-[400]">Password</label>
                     <div className="relative flex-1">
-                      <input name="password" type="password" className="w-full dm-sans border-[1px] mb-2 md:mb-0 h-[37.86px] md:h-auto rounded-[10px] border-[#374CC4] outline-none bg-[#101E71] py-[15px] px-[12px] md:px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]" value=""/>
+                      <input name="password" type="password" className="w-full dm-sans border-[1px] mb-2 md:mb-0 h-[37.86px] md:h-auto rounded-[10px] border-[#374CC4] outline-none bg-[#101E71] py-[15px] px-[12px] md:px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]" value={password} />
                       <span className="cursor-pointer absolute top-[50%] right-[13px] translate-y-[-50%]">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]">
                         <path d="M14.5299 9.47004L9.46992 14.53C8.81992 13.88 8.41992 12.99 8.41992 12C8.41992 10.02 10.0199 8.42004 11.9999 8.42004C12.9899 8.42004 13.8799 8.82004 14.5299 9.47004Z" stroke="white" stroke-linecap="round" stroke-linejoin="round">
@@ -230,7 +230,7 @@ const updatePassword = () => {
                   </div>
                    <div className="flex-1 flex flex-col md:gap-[4px]">
                                   <label className="dm-sans text-[#DFDFDF] text-[9.77px] sm:text-[16px] leading-[19.54px] sm:leading-[32px] font-[400]">URL</label>
-                   <input name="url" className="w-full dm-sans border-[1px] mb-2 md:mb-0 h-[37.86px] md:h-auto rounded-[10px] border-[#374CC4] outline-none bg-[#101E71] py-[15px] px-[12px] md:px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]" placeholder="https://examples.com" value=""/></div>
+                   <input name="url" className="w-full dm-sans border-[1px] mb-2 md:mb-0 h-[37.86px] md:h-auto rounded-[10px] border-[#374CC4] outline-none bg-[#101E71] py-[15px] px-[12px] md:px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]" placeholder="https://examples.com" value={url} onChange={(e)=>setUrl(e.target.value)}/></div>
                      </div>
                      <div className="flex flex-col md:gap-[38px] flex-wrap md:flex-row">
                      <div className="relative flex-1 flex flex-col md:gap-[4px]">
