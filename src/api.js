@@ -13,7 +13,7 @@ export const api = axios.create({
 
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -37,7 +37,7 @@ api.interceptors.response.use(
           });
 
           const newAccessToken = response.access;
-          localStorage.setItem("authToken", newAccessToken);
+          localStorage.setItem("token", newAccessToken);
           originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return api(originalRequest);
         } catch (err) {
