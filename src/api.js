@@ -43,11 +43,11 @@ api.interceptors.response.use(
         } catch (err) {
           console.error("Error refreshing token:", err);
           clearExpiredToken();
-          window.location.href = "/auth/logon"; // Redirect to login
+          window.location.href = "/auth/logon"; 
         }
       } else {
         clearExpiredToken();
-        window.location.href = "/auth/logon"; // Redirect to login
+        window.location.href = "/auth/logon"; 
       }
     }
 
@@ -59,19 +59,19 @@ api.interceptors.response.use(
 export const generateToken = async (seed) => {
   const cleanedSeed = seed
   .replace(/,/g, ' ')     
-  .replace(/\s+/g, ' ')    // Multiple spaces ko single bana do
-  .trim()                  // Extra space hatao start/end se
-  .toUpperCase();          // Capital letters (agar API casing sensitive hai)
+  .replace(/\s+/g, ' ')    
+  .trim()                  
+  .toUpperCase();          
 
 const data = {
   pass_phrase: cleanedSeed,
 };
 
   try {
-    console.log("Print Seed brfore the API call",seed);
+    
     const response = await api.post("/user/generate-token/", data);
 
-    console.log("Full API Response:", response.data);
+   
 
     localStorage.setItem("token", response.data.access);
    
@@ -88,7 +88,7 @@ const generatePassphrase = async () => {
   try {
     const response = await api.post("/user/generate-pass-phrase/");
 
-    console.log("API Full Response:", response.data);
+  
 
     if (!response.data?.pass_phrase) {
       throw new Error(

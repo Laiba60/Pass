@@ -16,29 +16,22 @@ const LoginPage = () => {
       .replace(/\s+/g, ' ')
       .trim()
       .toUpperCase();
-  
     console.log("Sending cleaned seed:", cleanedSeed);
-  
     try {
-      const result = await generateToken(cleanedSeed); // ✅ result mil gaya
+      const result = await generateToken(cleanedSeed); 
 console.log("Token generated:", result.token);
-navigate('/userdata'); // ✅ Add this
+navigate('/userdata'); 
       
     } catch (err) {
       console.error("Token generation failed:", err);
     }
   };
-  
-  
-
   return (
     <div className="flex flex-col md:flex-row min-h-screen w-screen bg-[#0E1A60]"> 
-      {/* Left Side (Info Section) */}
       <div
   className="hidden md:flex w-1/2 flex-col justify-center px-14 text-white bg-cover bg-center relative"
   style={{ backgroundImage: "url('/images/login.svg')" }}
 >
-  {/* Text Content */}
   <div className="absolute top-0 left-0 w-full p-8 z-10">
     <div className="flex items-center space-x-3">
       <img src={icons} alt="Security Icon" className="w-[70px] h-[64px]" />
@@ -57,9 +50,6 @@ navigate('/userdata'); // ✅ Add this
     </p>
   </div>
 </div>
-
-
-      {/* Right Side (Form Section) */}
       <div
         className="w-full md:w-1/2 flex flex-col justify-center items-center px-6 sm:px-10 text-white bg-cover bg-center relative rounded-l-[100px] md:rounded-none"
         style={{ backgroundImage: "url('/images/light.svg')" }}

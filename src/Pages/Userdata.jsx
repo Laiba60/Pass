@@ -31,6 +31,7 @@ const [isRemove,setRemove]=useState(false);
 const [isChecked, setIsChecked] = useState(false);
 const [IsLogin,setIsLogin]=useState(false);
 const [title, setTitle] = useState("");
+const [folderToDeleteId, setFolderToDeleteId] = useState(null);
 const handleRowClick = (title, folder, id) => {
   localStorage.setItem("editTitle", title);
   localStorage.setItem("editFolder", folder);
@@ -140,7 +141,10 @@ const handleRowClick = (title, folder, id) => {
 >
   {folder.title}
 </h2>
- <svg onClick={()=>setIsRemove(true)}
+ <svg onClick={()=>{setIsRemove(true)
+   setFolderToDeleteId(folder.id);
+ }
+}
   width="12"
   height="13"
  viewBox="0 0 12 13"
@@ -242,7 +246,7 @@ fill="#E14210"
     </section>
       </main>
       {isShowAdd && <Add setIsShowAdd={setIsShowAdd} />}
-    { isShowRemove && <Remove setIsRemove={setIsRemove}selectedFolder={selectedFolder} folders={folders}/>}
+    { isShowRemove && <Remove isRemove={isRemove} setIsRemove={setIsRemove}selectedFolder={selectedFolder} folders={folders} folderToDeleteId={folderToDeleteId} setFolderToDeleteId={setFolderToDeleteId}/>}
     {isUpdate && <Update setIsUpdate={ setIsUpdate} isUpdate= {isUpdate}  selectedFolder={selectedFolder} setSelectedFolder={setSelectedFolder} folders={folders}/>}
     {Isgenerate && <Generate setIsgenerate={setIsgenerate} />}
     {IsLogin && <SaveChanges setIsLogin={setIsLogin}/>}

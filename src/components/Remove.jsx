@@ -1,8 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDeleteFolder } from "../hooks/useDeleteFolder";
-const Remove = ({setIsRemove, folders,selectedFolder}) => {
+import {useState} from 'react'
+const Remove = ({setIsRemove,isRemove, folders,selectedFolder,folderToDeleteId,setFolderToDeleteId}) => {
   const navigate=useNavigate();
+  const [selectedFolderId, setSelectedFolderId] = useState(null);
+  const [folderToDelete, setFolderToDelete] = useState(null);
   const deleteFolderMutation = useDeleteFolder();
   return (
                          <section className="fixed inset-0 flex justify-center items-center bg-[#0000006B] z-50 px-[20px]">
@@ -21,23 +24,27 @@ const Remove = ({setIsRemove, folders,selectedFolder}) => {
                               <button className="dm-sans  bg-[#0E1956] w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none 
             border-none flex items-center justify-center text-[12px] sm:text-[15.5px] 
              font-[400] text-black" onClick={()=>(setIsRemove(false))}>Cancel</button>
-{folders?.map((folder) => (
-  <div key={folder?.id} className="flex items-center justify-between mb-2">
+
+
+  <div className="flex justify-end mt-2">
     <button
       className="dm-sans w-[125px] h-[40px] sm:w-[254px] sm:h-[58px] rounded-[6.23px] sm:rounded-[18.37px] outline-none border-none flex items-center justify-center text-[12px] sm:text-[16px] text-white"
       style={{
         background: "linear-gradient(90deg, rgb(161, 67, 255) 0%, rgb(80, 3, 219) 100%)",
         cursor: "pointer"
       }}
-      onClick={() =>{
-         deleteFolderMutation.mutate(folder.id)
-      setIsRemove(false)
+      onClick={() => {
+        deleteFolderMutation.mutate(folderToDeleteId);
+        setIsRemove(false);
+        setFolderToDeleteId(null);
       }}
     >
       Delete
     </button>
   </div>
-))}
+
+
+
   </section>
   </section>
  </section>
