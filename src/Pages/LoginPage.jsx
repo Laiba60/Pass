@@ -1,28 +1,36 @@
 import icons from "/images/icons.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useGenerateToken } from "../api"
+
 import { generateToken } from "../api";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [Seed, setKeySeed] = useState("");
-  const { mutate: generateToken, isLoading, isError, error } = useGenerateToken();
-  const handleLogin = () => {
-    if (!Seed.trim()) {
-      alert("Please enter your key seed.");
-      return;
-    }
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [seed, setSeed] = useState("");
 
-    generateToken(Seed, {
-      onSuccess: () => {
-        navigate("/dashboard"); 
-      },
-      onError: (err) => {
-        alert(`Login failed: ${err.message}`);
-      },
-    });
+  const handleLogin = async () => {
+    const cleanedSeed = seed
+      .replace(/,/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toUpperCase();
+  
+    console.log("Sending cleaned seed:", cleanedSeed);
+  
+    try {
+      const result = await generateToken(cleanedSeed); // ✅ result mil gaya
+console.log("Token generated:", result.token);
+navigate('/userdata'); // ✅ Add this
+      
+    } catch (err) {
+      console.error("Token generation failed:", err);
+    }
   };
+  
+  
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen w-screen bg-[#0E1A60]"> 
       {/* Left Side (Info Section) */}
@@ -64,8 +72,8 @@ const LoginPage = () => {
         <input
           type="text"
           placeholder="Enter your key seed..."
-          value={Seed}
-          onChange={(e) => setKeySeed(e.target.value)}
+          value={seed}
+          onChange={(e) => setSeed(e.target.value)}
           className="w-full max-w-xs sm:max-w-md p-4 sm:p-5 rounded-lg bg-[#0E1A60] text-white placeholder-white/60 border-none focus:ring-2"
         />
 
@@ -73,8 +81,11 @@ const LoginPage = () => {
           className="w-full max-w-xs sm:max-w-md mt-6 sm:mt-10 bg-gradient-to-r from-[#A143FF] to-[#5003DB] text-white font-semibold py-3 rounded-[18.37px] transition-all hover:opacity-90 shadow-lg"
           
           onClick={handleLogin}
+          
           disabled={isLoading} >
+            
           {isLoading ? "Logging in..." : "Next"}
+         
         </button>
 
         <p className="text-center mt-4 text-sm text-white/80">

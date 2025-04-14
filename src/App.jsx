@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import RootEntery from "./Pages/RootEntery";
 import LoginPage from "./Pages/LoginPage";
-
 import Register from "./components/Register";
 import Generate from "./components/Generate";
 import Add from "./components/Add";
@@ -13,7 +12,6 @@ import Userdata from "./Pages/Userdata";
 import Seed from "./Pages/Seed";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
@@ -27,18 +25,13 @@ function App() {
             <ProtectedRoute isLoggedIn={isLoggedIn}>
             <Home />
           </ProtectedRoute>} />
-          
         <Route path="/auth/logon" element={<LoginPage />} />
-       
         <Route path="/register" element={<Register />} />
-        
-       
-       
         <Route path="/add" element={<Add/>}/>
         <Route path="/remove" element={<Remove/>}/>
         <Route path="/update" element={<Update/>}/>
         <Route path="/root" element={
-           <ProtectedRoute isLoggedIn={isLoggedIn}>
+           <ProtectedRoute isLoggedIn={isLoggedIn} >
           <RootEntery />
         </ProtectedRoute>
       } />

@@ -22,46 +22,50 @@ api.interceptors.request.use((config) => {
 
 
 api.interceptors.response.use(
-  (response) => {
-   
-    return response;
-  },
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-   
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       const refreshToken = localStorage.getItem("refreshToken");
       if (refreshToken) {
         try {
-          
           const response = await api.post("/user/refresh-token/", {
             refresh_token: refreshToken,
           });
 
-          
           const newAccessToken = response.access;
           localStorage.setItem("authToken", newAccessToken);
-
-          
           originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return api(originalRequest);
         } catch (err) {
           console.error("Error refreshing token:", err);
-         
+          clearExpiredToken();
+          window.location.href = "/auth/logon"; // Redirect to login
         }
+      } else {
+        clearExpiredToken();
+        window.location.href = "/auth/logon"; // Redirect to login
       }
     }
+
     return Promise.reject(error);
   }
 );
 
+
 export const generateToken = async (seed) => {
-  const data = {
-    pass_phrase: seed.trim(),
-  };
+  const cleanedSeed = seed
+  .replace(/,/g, ' ')     
+  .replace(/\s+/g, ' ')    // Multiple spaces ko single bana do
+  .trim()                  // Extra space hatao start/end se
+  .toUpperCase();          // Capital letters (agar API casing sensitive hai)
+
+const data = {
+  pass_phrase: cleanedSeed,
+};
 
   try {
     console.log("Print Seed brfore the API call",seed);
@@ -69,7 +73,7 @@ export const generateToken = async (seed) => {
 
     console.log("Full API Response:", response.data);
 
-    localStorage.setItem("authToken", response.data.access);
+    localStorage.setItem("token", response.data.access);
    
 
     return { token: response.data.access };
