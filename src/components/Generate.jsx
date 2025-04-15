@@ -49,8 +49,11 @@ const Generate = ({ setIsgenerate }) => {
     navigator.clipboard.writeText(password);
   };
   const handleLengthChange = (value) => {
-    setLength(value);
-    setFormData((prev) => ({ ...prev, length: parseInt(value) }));
+    const numericValue = parseInt(value, 10);
+    setLength(numericValue);
+    console.log("Slider moved to:", numericValue); 
+    setFormData((prev) => ({ ...prev, length: numericValue }));
+    handleGenerate();
   };
   return (
       <section className="fixed inset-0 flex justify-center items-center bg-[rgba(14,26,96,0.95)] z-100 px-[20px] pt-[80px]">

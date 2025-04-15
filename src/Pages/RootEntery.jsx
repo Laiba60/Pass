@@ -230,7 +230,7 @@ const updatePassword = () => {
                   </div>
                    <div className="flex-1 flex flex-col md:gap-[4px]">
                                   <label className="dm-sans text-[#DFDFDF] text-[9.77px] sm:text-[16px] leading-[19.54px] sm:leading-[32px] font-[400]">URL</label>
-                   <input name="url" className="w-full dm-sans border-[1px] mb-2 md:mb-0 h-[37.86px] md:h-auto rounded-[10px] border-[#374CC4] outline-none bg-[#101E71] py-[15px] px-[12px] md:px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]" placeholder="https://examples.com" value={url} onChange={(e)=>setUrl(e.target.value)}/></div>
+                  <input name="url" className="w-full dm-sans border-[1px] mb-2 md:mb-0 h-[37.86px] md:h-auto rounded-[10px] border-[#374CC4] outline-none bg-[#101E71] py-[15px] px-[12px] md:px-[24px] placeholder:text-[#DFDFDF36] text-white text-[16px] leading-[32px] font-[400]" placeholder="https://examples.com" value={url} onChange={(e)=>setUrl(e.target.value)}/></div>
                      </div>
                      <div className="flex flex-col md:gap-[38px] flex-wrap md:flex-row">
                      <div className="relative flex-1 flex flex-col md:gap-[4px]">
